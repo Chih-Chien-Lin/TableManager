@@ -15,9 +15,9 @@
     <div class="container">
         <h2>Modal Example</h2>
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Occupied">Occupied</button>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-            data-target="#Not-Occupied">Not-Occupied</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Occupied" >Occupied</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal"data-target="#Not-Occupied" >Not-Occupied</button>
+            
 
         <!-- Modal Occupied -->
         <div class="modal fade" id="Occupied" role="dialog">
@@ -31,68 +31,113 @@
                     </div>
 
                     <div class="modal-body">
-                        <div row>
+                        <div class="row">
                             <div class="col-md-6">
-                                <h4 class = "text-danger"><strong>order: {{ order_id }}</strong></h4>
+                                <h4 class="text-danger"><strong>order: {{ order_id }}</strong></h4>
                                 <P>appetizer: {{ appetizer }}</P>
                                 <p>Entre: {{ Entre }}</p>
                                 <p>Desert: {{ Desert }}</p>
                             </div>
-                            <div class ="col-md-6">
-                                <h4 class = "text-danger"><strong>order: {{ order_id }}</strong></h4>
-                                <P>appetizer: {{ appetizer }}</P>
-                                <p>Entre: {{ Entre }}</p>
-                                <p>Desert: {{ Desert }}</p>
-                            </div>
-                        </div>
-                        <br><br><hr><br><br>
-                        <div row>
-                            <div class="col-md-6" style="margin-top:10px">
-                                <h4 class = "text-danger"><strong>order: {{ order_id }}</strong></h4>
-                                <P>appetizer: {{ appetizer }}</P>
-                                <p>Entre: {{ Entre }}</p>
-                                <p>Desert: {{ Desert }}</p>
-                            </div>
-                            <div class="col-md-6" style="margin-top:10px">
-                                <h4 class = "text-danger"><strong>order: {{ order_id }}</strong></h4>
+                            <div class="col-md-6">
+                                <h4 class="text-danger"><strong>order: {{ order_id }}</strong></h4>
                                 <P>appetizer: {{ appetizer }}</P>
                                 <p>Entre: {{ Entre }}</p>
                                 <p>Desert: {{ Desert }}</p>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="text-danger"><strong>order: {{ order_id }}</strong></h4>
+                                <P>appetizer: {{ appetizer }}</P>
+                                <p>Entre: {{ Entre }}</p>
+                                <p>Desert: {{ Desert }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="text-danger"><strong>order: {{ order_id }}</strong></h4>
+                                <P>appetizer: {{ appetizer }}</P>
+                                <p>Entre: {{ Entre }}</p>
+                                <p>Desert: {{ Desert }}</p>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- buttons below -->
+                        <!-- <div class="modal-footer"> -->
+                        <div class="row">
+                            <div class="col-md-3" id = "Appetizer">
+                                <button type="button" class="btn btn-lg btn-primary" id = "btn-app">Appetizer</button>
+                            </div>
+                            <div class="col-md-3" id = "Entre">
+                                <button type="button" class="btn btn-lg" id = "btn-ent" >Entre'</button>
+                            </div>
+                            <div class="col-md-3" id = "Desert">
+                                <button type="button" class="btn btn-lg" id = "btn-des">Desert</button>
+                            </div>
+                            <div class="col-md-3" id = "clear">
+                                <button type="button" class="btn btn-lg btn-primary" id = "btn-cle" >Clear</button>
+                            </div>
+                        </div>
+                        <br>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
-
             </div>
+
         </div>
 
-        <!-- Modal Not-Occupied -->
-        <div class="modal fade" id="Not-Occupied" role="dialog">
-            <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Table {{ table_name }}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+    <!-- Modal Not-Occupied -->
+    <div class="modal fade" id="Not-Occupied" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Table {{ table_name }}</h4>
                 </div>
-
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
+    <script type="text/javascript">
+    $("#Appetizer").on("click",changeBtnApp);
+    $("#Entre").on("click",changeBtnEnt);
+    $("#Desert").on("click",changeBtnDes)
+    $("#clear").on("click",changeBtnCle);
+    function changeBtnApp(){
+        $("#btn-app").attr("disabled", true);
+        $("#btn-app").removeClass("btn-primary");
+        $("#btn-app").addClass("btn-secondary");
+        $("#btn-ent").addClass("btn-primary");
+    }
+    function changeBtnEnt(){
+        $("#btn-ent").attr("disabled", true);
+        $("#btn-ent").removeClass("btn-primary");
+        $("#btn-ent").addClass("btn-secondary");
+        $("#btn-des").addClass("btn-primary");
+    }
+    function changeBtnDes(){
+        $("#btn-des").attr("disabled", true);
+        $("#btn-des").removeClass("btn-primary");
+        $("#btn-des").addClass("btn-secondary");
+    }
+    function changeBtnCle(){
+        $("#btn-app").attr("disabled", false);
+        $("#btn-ent").attr("disabled", false);
+        $("#btn-des").attr("disabled", false);
+        console.log("clear btn clicked")
+        $("#btn-app").removeClass("btn-secondary");
+        $("#btn-app").addClass("btn-primary");
+    }
 
+    </script>
 </body>
 
 </html>
