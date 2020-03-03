@@ -60,6 +60,55 @@ $(function() {
         });
     });
 
-    // $(".entree")
+    $(".entree").on("submit", function(event){
+        event.preventDefault();
+        let tableColor = {
+            table_color: "Yellow"
+        }
+        $.ajax("/entree",{
+            type: "PUT",
+            data: tableColor
+        }).then(function(){
+            console.log("Entree has been served!")
+        })
+    })
 
+    $(".dessert").on("submit", function(event){
+        event.preventDefault();
+        let tableColor = {
+            table_color: "Red"
+        }
+        $.ajax("/entree",{
+            type: "PUT",
+            data: tableColor
+        }).then(function(){
+            console.log("Dessert has been served!")
+        })
+    })
+    // $(".entree")
+    $(".clear").on("submit", function(event){
+        event.preventDefault()
+        let id = $(this).data("id");
+        let availability = true;
+
+        let update = {
+            availability: availability,
+            id: id
+        }
+        $.ajax("/availability", {
+            type: "PUT",
+            data: availability
+        }).then(function(){
+            let clearTable = {
+                table_color: white,
+                end_at: moment.format('LTS')
+            };
+            $.ajax("/clear",{
+                type: "PUT",
+                data: clearTable
+            }).then(function(dbClear){
+                res.render("Index", dbClear)
+            })
+        })
+    })
 });
