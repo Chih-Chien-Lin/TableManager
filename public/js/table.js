@@ -38,15 +38,13 @@ $(function() {
 
         var time = {
             start_at: moment.format('LTS'),
-            app_time: true
+            table_color: "green"
         }
-        
-
         $.ajax("/check-in", {
             type: 'POST',
             data: time
         }).then(function(response) {
-            if (res !== null) {
+            if (response !== null) {
                 var availability = {
                     availability: false,
                     id: id
