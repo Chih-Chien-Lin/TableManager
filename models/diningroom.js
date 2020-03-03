@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     availability: {
       type: DataTypes.BOOLEAN,
-      defaultValue: '0',
+      defaultValue: '1',
     }
   });
 
