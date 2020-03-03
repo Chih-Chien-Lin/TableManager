@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Modal Example</h2>
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Occupied">Occupied</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+            data-target="#Not-Occupied">Not-Occupied</button>
+
+        <!-- Modal Occupied -->
+        <div class="modal fade" id="Occupied" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Table {{ table_name }}</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div row>
+                            <div class="col-md-6">
+                                <h4 class = "text-danger"><strong>order: {{ order_id }}</strong></h4>
+                                <P>appetizer: {{ appetizer }}</P>
+                                <p>Entre: {{ Entre }}</p>
+                                <p>Desert: {{ Desert }}</p>
+                            </div>
+                            <div class ="col-md-6">
+                                <h4 class = "text-danger"><strong>order: {{ order_id }}</strong></h4>
+                                <P>appetizer: {{ appetizer }}</P>
+                                <p>Entre: {{ Entre }}</p>
+                                <p>Desert: {{ Desert }}</p>
+                            </div>
+                        </div>
+                        <br><br><hr><br><br>
+                        <div row>
+                            <div class="col-md-6" style="margin-top:10px">
+                                <h4 class = "text-danger"><strong>order: {{ order_id }}</strong></h4>
+                                <P>appetizer: {{ appetizer }}</P>
+                                <p>Entre: {{ Entre }}</p>
+                                <p>Desert: {{ Desert }}</p>
+                            </div>
+                            <div class="col-md-6" style="margin-top:10px">
+                                <h4 class = "text-danger"><strong>order: {{ order_id }}</strong></h4>
+                                <P>appetizer: {{ appetizer }}</P>
+                                <p>Entre: {{ Entre }}</p>
+                                <p>Desert: {{ Desert }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal Not-Occupied -->
+        <div class="modal fade" id="Not-Occupied" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Table {{ table_name }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
