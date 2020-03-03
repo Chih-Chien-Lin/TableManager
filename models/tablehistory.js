@@ -6,5 +6,16 @@ module.exports = function(sequelize, DataTypes) {
       end_at: {
         type: DataTypes.TIME
       }
-  })
+  });
+
+  TableHistory.associate = (models) =>{
+    models.TableHistory.belongsTo(models.Diningroom,{
+      onDelete: "CASCADE",
+      foreignKey:{
+        allowNull: false
+      }
+    })
+  }
+
+  return TableHistory;
 }

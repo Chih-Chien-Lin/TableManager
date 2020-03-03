@@ -11,5 +11,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: '0',
     }
-  })
+  });
+
+  Diningroom.associate = (models) => {
+    models.Diningroom.hasMany(models.TableHistory)
+  };
+
+  return Diningroom;
 }
