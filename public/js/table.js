@@ -8,10 +8,13 @@ $(function() {
         event.preventDefault();
         var totalSeats = $("#table-count").val().trim();
         totalSeats = parseInt(tableCount);
+        let seats = {
+            seats: totalSeats
+        }
 
         $.ajax("/", {
             type: "POST",
-            data: totalSeats
+            data: seats
           }).then(function() {
               console.log("New Table Added!");
               location.reload();
@@ -28,21 +31,37 @@ $(function() {
         //display of pay DOM = "none"
     });
 
-    $(".occupy-table").on("submit", function(event) {
-        event.preventDefault();
-    });
-
-    $(".order-app").on("submit", function(event) {
+    $(".check-in").on("submit", function(event) {
         event.preventDefault();
 
-        var appetizerOrdered = true;
-        $.ajax("/appetizer", {
-            type: "PUT",
-            data: appetizerOrdered
-        }).then(function() {
-            console.log("Appetizer Ordered!'");
-            location.reload();                      //Kenny - do we need this here?
+        var id = $(this).data("id");
+
+        var time = {
+            start_at: moment.format('LTS'),
+            app_time: true
+        }
+        
+
+        $.ajax("/check-in", {
+            type: 'POST',
+            data: time
+        }).then(function(response) {
+            if (res !== null) {
+                var availability = {
+                    availability: false,
+                    id: id
+                };
+
+                $.ajax("/availability", {
+                    type: "PUT",
+                    data: availability
+                }).then(function(res) {
+                    location.reload();
+                });
+            }
         });
     });
+
+    // $(".entree")
 
 });
