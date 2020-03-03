@@ -5,6 +5,18 @@ module.exports = function(sequelize, DataTypes) {
       },
       end_at: {
         type: DataTypes.TIME
+      },
+      app_time: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: '0',
+      },
+      entree_time: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: '0',
+      },
+      dessert_time: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: '0',
       }
   });
 
