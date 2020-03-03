@@ -10,15 +10,61 @@
 </head>
 <body>
 
-<div class="container">
-  <div class="jumbotron">
-    <h1>What is the name of your resturant?</h1>      
-    <input type="text" value="" id="resturantName">
-    
-    <button onclick="document.getElementById('ResturantName').value = ''" data-toggle="modal">Submit</button>  
-</div>
+  <div class="container">
+      <div class="jumbotron">
+          <h1>What is the name of your resturant?</h1>      
+              <div class="col-sm-6 col-sm-offset-3">
+      <input type="text" value="" id="resturantName" >
+      <button onclick="document.getElementById('ResturantName').value = ''"  class="btn btn-primary btn-lg" data-toggle="modal" data-target="#Occupied">submit</button>
+   </div>
 
-</div>
+      <div class="modal fade" id="Occupied" role="dialog">
+          <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Choose your title:</h4>
+                  </div>
+
+                  <div class="modal-body">
+                      <div row>
+                          <div >
+                            Front Desk
+                          </div>
+                          
+                      </div>
+                      <hr>
+                      <div row>
+                         Kitchen
+                          
+                      </div>
+                      <hr>
+
+                      <div row>
+                          <div >
+                            Manager
+                          </div>
+                          
+                      </div>
+                      <hr>
+                      <div row>
+                         Staff
+                          
+                      </div>
+
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">submit</button>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+  </div>
 
 </body>
 </html>
