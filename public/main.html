@@ -33,24 +33,211 @@
         <div class="row">
           <!-- </div> -->
           <div class="col-md-3">
-            <div class="rectangle" id="table-1" isOccupy="0"> table 1</div>
+            <button type="button" class="btn btn-info btn-lg" id="table-1" data-toggle="modal" isOccupy="0"
+              data-target="#Not-Occupied">table-1</button>
           </div>
           <div class="col-sm-3">
             <div class="rectangle" id="table-2" isOccupy="0">table 2</div>
           </div>
-
           <div class="col-md-3">
             <div class="rectangle" id="table-3" isOccupy="0">table 3</div>
           </div>
           <div class="col-md-3">
             <div class="rectangle" id="table-4" isOccupy="0">table 4</div>
+          </div>
+        </div>
+      </div>
+      <!-- here is the setting of modal -->
+
+      <!-- Modal Occupied -->
+      <div class="modal fade" id="Occupied" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Table {{ table_name }}</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <h4 class="text-danger"><strong>Appetizer</strong></h4>
+                  <P id="AppOne">wagyu meatballs: {{ Count }}</P>
+                  <p>pan seared scallops: {{ AppTwoCount }}</p>
+                  <p>Lobster risotto: {{ AppThreeCount }}</p>
+                  <br>
+                  <h4 class="text-danger"><strong>Entre'</strong></h4>
+                  <P>beef wellington: {{ EntOneCount }}</P>
+                  <p>roasted rack of lamb: {{ EntrTwoCount }}</p>
+                  <p>crispy skin salmon: {{ EntrThreeCount }}</p>
+                  <br>
+                  <h4 class="text-danger"><strong>Desert</strong></h4>
+                  <P>sticky toffee pudding: {{ DesOneCount }}</P>
+                  <p>cranberry soufflé: {{ DesTwoCount }}</p>
+                  <br>
+                </div>
+              </div>
+
+              <!-- buttons below -->
+              <!-- <div class="modal-footer"> -->
+              <!-- buttons below -->
+              <!-- <div class="modal-footer"> -->
+              <div class="row">
+                <div class="col-md-3" id="Appetizer">
+                  <button type="button" class="btn btn-lg btn-primary" id="btn-app">Appetizer</button>
+                </div>
+                <div class="col-md-3" id="Entre">
+                  <button type="button" class="btn btn-lg" id="btn-ent">Entre'</button>
+                </div>
+                <div class="col-md-3" id="Desert">
+                  <button type="button" class="btn btn-lg" id="btn-des">Desert</button>
+                </div>
+                <div class="col-md-3" id="clear">
+                  <button type="button" class="btn btn-lg btn-primary" id="clearBtn">Clear</button>
+                </div>
+              </div>
+              <br>
+
+
+            </div>
+            <br>
 
           </div>
         </div>
       </div>
 
     </div>
+    <!-- Modal Occupied -->
+    <div class="modal fade" id="Not-Occupied" role="dialog">
+      <div class="modal-dialog">
 
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Table {{ table_name }}</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class=" col-md-7">
+                <h4 class="text-danger"><strong>Appetizer</strong></h4>
+                <form id="AppOne">
+                  wagyu meatballs: <input type="text" size="4">
+                </form>
+                <form id="AppTwo">
+                  pan seared scallops: <input type="text" size="4">
+                </form>
+                <form id="AppThree">
+                  Lobster risotto: <input type="text" size="4">
+                </form>
+                <br>
+
+                <h4 class="text-danger"><strong>Entre'</strong></h4>
+                <form id="EntOne">
+                  beef wellington: <input type="text" size="4">
+                </form>
+                <form id="EntTwo">
+                  roasted rack of lamb: <input type="text" size="4">
+                </form>
+                <form id="EntThree">
+                  crispy skin salmon: <input type="text" size="4">
+                </form>
+                <br>
+
+                <h4 class="text-danger"><strong>Desert</strong></h4>
+                <form id="DesOne">
+                  sticky toffee pudding: <input type="text" size="4">
+                </form>
+                <form id="DesTwo">
+                  cranberry soufflé: <input type="text" size="4">
+                </form>
+                <br>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="submitBtn">Finish Order &
+              Submit</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Here start javascript -->
+
+  <script type="text/javascript">
+    $("#Appetizer").on("click", changeBtnApp);
+    $("#Entre").on("click", changeBtnEnt);
+    $("#Desert").on("click", changeBtnDes);
+    $("#clear").on("click", changeBtnCle);
+    $("#submitBtn").on("click", changeToOccupied)
+    $("#clearBtn").on("click", changeToNotOccupied)
+    var countApp = 0;
+    console.log("countApp: ", countApp)
+    function changeBtnApp() {
+      $("#btn-app").attr("disabled", true);
+      $("#btn-app").removeClass("btn-primary");
+      $("#btn-app").addClass("btn-secondary");
+      $("#btn-ent").addClass("btn-primary");
+      countApp++;
+    }
+    function changeBtnEnt() {
+      if (countApp == 1) {
+        $("#btn-ent").attr("disabled", true);
+        $("#btn-ent").removeClass("btn-primary");
+        $("#btn-ent").addClass("btn-secondary");
+        $("#btn-des").addClass("btn-primary");
+        countApp++;
+      } else {
+        return
+      }
+
+    }
+    function changeBtnDes() {
+      if (countApp == 2) {
+        $("#btn-des").attr("disabled", true);
+        $("#btn-des").removeClass("btn-primary");
+        $("#btn-des").addClass("btn-secondary");
+        countApp++;
+      } else {
+        return
+      }
+
+    }
+    function changeBtnCle() {
+      if (countApp == 3) {
+        $("#btn-app").attr("disabled", false);
+        $("#btn-ent").attr("disabled", false);
+        $("#btn-des").attr("disabled", false);
+        $("#btn-app").removeClass("btn-secondary");
+        $("#btn-app").addClass("btn-primary");
+        countApp = 0;
+      } else {
+        return
+      }
+
+    }
+    function changeToOccupied() {
+      console.log("this is what? ", this)
+      $("#table-1").removeAttr("isOccupy");
+      $("#table-1").removeAttr("data-target");
+      $("#table-1").attr("isOccupy", "1");
+      $("#table-1").attr("data-target", "#Occupied")
+    }
+    function changeToNotOccupied() {
+      $("#table-1").removeAttr("isOccupy");
+      $("#table-1").removeAttr("data-target");
+      $("#table-1").attr("isOccupy", "0");
+      $("#table-1").attr("data-target", "#Not-Occupied")
+    }
+
+
+  </script>
 
 </body>
 
