@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   Diningroom.associate = (models) => {
-    models.Diningroom.hasMany(models.TableHistory)
+    models.Diningroom.hasMany(models.TableHistory, {as: 'tables'})
   };
 
   return Diningroom;

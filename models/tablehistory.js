@@ -34,6 +34,5 @@ module.exports = function(sequelize, DataTypes) {
       as: 'id'
     })
   }
-
   return TableHistory;
 }

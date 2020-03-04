@@ -14,9 +14,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     });
   
-    Menu.associate = (models) => {
-      models.Menu.hasMany(models._________) //ask group
-    };
-  
     return Menu;
-  }
+}
