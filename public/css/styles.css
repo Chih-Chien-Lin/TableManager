@@ -61,6 +61,7 @@ button.edit {
 .table-container {
   width: 50%;
   height: 50%;
+  float: left;
 }
 
 .check {
@@ -70,6 +71,14 @@ button.edit {
 .seat {
   height: 70px;
   width: 100px;
+  background-color: lightgray;
+}
+
+.side-seat {
+  margin-top: 20px;
+  height: 150px;
+  width: 30px;
+  background-color: lightgray;
 }
 
 .table {
