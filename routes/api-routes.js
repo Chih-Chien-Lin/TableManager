@@ -51,10 +51,12 @@ module.exports = function(app) {
 
 
   //first time updating 2 things at once with 1 update, I am pretty sure it will work since all the updates are in one curly brackets.
-  app.pur("/clear", function(req,res){
+  app.put("/clear", function(req,res){
     db.TableHistory.update({ 
       table_color: req.body.table_color, 
-      end_at: req.body.end_at},{
+      end_at: req.body.end_at
+      },
+      {
         where: {
           id: req.body.id
         }
