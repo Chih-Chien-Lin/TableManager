@@ -17,15 +17,20 @@ module.exports = function(sequelize, DataTypes) {
       dessert_time: {
         type: DataTypes.BOOLEAN,
         defaultValue: '0',
+      },
+      foreign_key: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Diningroom',
+          key: 'id'
+        }
       }
   });
 
   TableHistory.associate = (models) =>{
     models.TableHistory.belongsTo(models.Diningroom,{
       onDelete: "CASCADE",
-      foreignKey:{
-        allowNull: false
-      }
+      foreignKey: 'foreign_key', as: 'id'
     })
   }
 
