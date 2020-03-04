@@ -27,6 +27,15 @@ module.exports = function(app) {
     });
   });
 
+  app.put("/appetizer", function(req,res){
+    db.Tablehistory.update(req.body.table_color,{
+      where: {
+        id: req.body.tableId
+      }
+    }).then(function(dbAppetizer){
+
+    });
+  });
 
   //this entree and dessert (below) put will change the color stored in the TableHistory table and render it out to the handlebar
   app.put("/entree", function(req,res){
