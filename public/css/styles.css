@@ -57,6 +57,31 @@ button.edit {
   padding: 0px 10px;
 }
 
+/* model classes for tables */
+.table-container {
+  width: 50%;
+  height: 50%;
+}
+
+.check {
+  border: 1px solid black;
+}
+
+.seat {
+  height: 70px;
+  width: 100px;
+}
+
+.table {
+  height: 200px;
+  width: 300px;
+}
+
+.table-color {
+  background-color: white;
+}
+
+
 textarea {
   resize: none;
 }
@@ -64,6 +89,7 @@ textarea {
 input {
   margin-top: 5px;
 }
+
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}

@@ -5,17 +5,18 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         len: [2,6],
-        isInt: true
-      }
+        isInt: true}
     },
     availability: {
       type: DataTypes.BOOLEAN,
-      defaultValue: '1',
+      defaultValue: '1',}
+    },{
+      freezeTableName: true
     }
-  });
+  );
 
   Diningroom.associate = (models) => {
-    models.Diningroom.hasMany(models.TableHistory)
+    models.Diningroom.hasMany(models.TableHistory, {as: 'tables'})
   };
 
   return Diningroom;

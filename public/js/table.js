@@ -4,13 +4,36 @@ $(function() {
         //display of model DOM === "block"
     });
 
-    $("#create-table").on("submit", function(event) { //this creates a table in the diningroom.js file
-        event.preventDefault();
-        var totalSeats = $("#table-count").val().trim();
-        totalSeats = parseInt(tableCount);
+    $("#create-table").on("click", function() { 
+        var totalSeats =  $("#table-count").val().trim();
+        totalSeats = parseInt(totalSeats);
         let seats = {
             seats: totalSeats
         }
+
+        // let twoSeat = `<div class="class-container">
+        // <div class="container m-5 text-center">
+        //     <div class="row">
+        //         <div class="col-sm-5"></div>
+        //         <div class="col-sm-2 check seat rounded-pill table-color"></div>
+        //         <div class="col-sm-5"></div>
+        //     </div>
+        //     <br>
+        //     <div class="row">
+        //         <div class="col-sm-2"></div>
+        //         <div class="col-sm-8 check table table-color"></div>
+        //         <div class="col-sm-2"></div>
+        //     </div>
+        //     <br>
+        //     <div class="row">
+        //         <div class="col-sm-5"></div>
+        //         <div class="col-sm-2 check seat rounded-pill table-color"></div>
+        //         <div class="col-sm-5"></div>
+        //     </div>
+        // </div>
+        // </div>`;
+
+        // document.body.appendChild(twoSeat);
 
         $.ajax("/", {
             type: "POST",
@@ -47,7 +70,7 @@ $(function() {
             //time will grab the time from moment and change the table_color to green, so when it renders on a reload it'll be green.
             var time = { 
                 start_at: moment.format('LTS'),
-                table_color: "green"
+                table_color: "blue"
             }
             $.ajax("/check-in", {
                 type: 'POST',
@@ -84,6 +107,23 @@ $(function() {
     //         }
     //     });
     // });
+
+    $(".appetizer").on("click", function(event){
+        alert("hello");
+        // event.preventDefault();
+        // let tableId = $(this).data("tableId")
+        // let tableColor = {
+        //     table_color: "green",
+        //     id: tableId
+        // }
+        // $.ajax("/appetizer",{
+        //     type: "PUT",
+        //     data: tableColor
+        // }).then(function(){
+        //     console.log("Appetizer has been served!")
+        //     location.reload()
+        // })
+    })
 
     $(".entree").on("submit", function(event){
         event.preventDefault();
