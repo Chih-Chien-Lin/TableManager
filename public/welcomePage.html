@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Blog - Express</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <div class="jumbotron ">
+  <div class="container">
+      <h1>What is the name of your resturant?</h1>
+      <div class="col-sm-6 col-sm-offset-3">
+        <input type="text" value="" id="resturantName">
+        <button onclick="document.getElementById('ResturantName').value = ''" class="btn btn-primary btn-lg"
+          data-toggle="modal" data-target="#Occupied">submit</button>
+      </div>
+
+      <div class="modal fade" id="Occupied" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h4 class="modal-title">Choose your title:</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+
+              <div row>
+                <div>
+                  <a type="button" class="btn btn-primary btn-lg btn-block" id="frontDesk"  href="/main">Front Desk</a>
+
+                </div>
+
+              </div>
+              <hr>
+              <div row>
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="kitchen">Kitchen</button>
+
+              </div>
+              <hr>
+
+              <div row>
+                <div>
+                  <button type="button" class="btn btn-primary btn-lg btn-block" id="Manager">Manager</button>
+                </div>
+
+              </div>
+              <hr>
+              <div row>
+                <button type="button" class="btn btn-primary btn-lg btn-block" id="staff">Staff</button>
+
+              </div>
+
+            </div>
+            
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
+<script src="js/blog.js" type="text/javascript"></script>
+
+</html>

@@ -68,15 +68,8 @@
                             <div class="col-md-3" id="Appetizer">
                                 <button type="button" class="btn btn-lg btn-primary" id="btn-app">Appetizer</button>
                             </div>
-                            <div class="col-md-3" id="Entre">
-                                <button type="button" class="btn btn-lg" id="btn-ent">Entre'</button>
-                            </div>
-                            <div class="col-md-3" id="Desert">
-                                <button type="button" class="btn btn-lg" id="btn-des">Desert</button>
-                            </div>
-                            <div class="col-md-3" id="clear">
-                                <button type="button" class="btn btn-lg btn-primary" id="btn-cle">Clear</button>
-                            </div>
+                            
+                           
                         </div>
                         <br>
 
@@ -121,42 +114,8 @@
                 $("#btn-ent").addClass("btn-primary");
                 countApp++;
             }
-            function changeBtnEnt() {
-                if (countApp == 1) {
-                    $("#btn-ent").attr("disabled", true);
-                    $("#btn-ent").removeClass("btn-primary");
-                    $("#btn-ent").addClass("btn-secondary");
-                    $("#btn-des").addClass("btn-primary");
-                    countApp++;
-                } else {
-                    return
-                }
-
-            }
-            function changeBtnDes() {
-                if (countApp == 2) {
-                    $("#btn-des").attr("disabled", true);
-                    $("#btn-des").removeClass("btn-primary");
-                    $("#btn-des").addClass("btn-secondary");
-                    countApp++;
-                } else {
-                    return
-                }
-
-            }
-            function changeBtnCle() {
-                if (countApp == 3) {
-                    $("#btn-app").attr("disabled", false);
-                    $("#btn-ent").attr("disabled", false);
-                    $("#btn-des").attr("disabled", false);
-                    $("#btn-app").removeClass("btn-secondary");
-                    $("#btn-app").addClass("btn-primary");
-                    countApp = 0;
-                } else {
-                    return
-                }
-
-            }
+         
+           
 
         </script>
 </body>
