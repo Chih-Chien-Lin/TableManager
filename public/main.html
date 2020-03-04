@@ -32,17 +32,20 @@
         </div>
         <div class="row">
           <div class="col-md-3">
-            <button type="button" class="btn btn-info btn-lg" id="table-1" data-toggle="modal" isOccupy="0"
+            <button type="button" class="btn btn-info btn-lg tableBtn" id="table-1" data-toggle="modal" isOccupy="0"
               data-target="#Not-Occupied">table-1</button>
           </div>
           <div class="col-sm-3">
-            <div class="rectangle" id="table-2" isOccupy="0">table 2</div>
+            <button type="button" class="btn btn-info btn-lg tableBtn" id="table-2" data-toggle="modal" isOccupy="0"
+              data-target="#Not-Occupied">table-2</button>
           </div>
           <div class="col-md-3">
-            <div class="rectangle" id="table-3" isOccupy="0">table 3</div>
+            <button type="button" class="btn btn-info btn-lg tableBtn" id="table-3" data-toggle="modal" isOccupy="0"
+              data-target="#Not-Occupied">table-3</button>
           </div>
           <div class="col-md-3">
-            <div class="rectangle" id="table-4" isOccupy="0">table 4</div>
+            <button type="button" class="btn btn-info btn-lg tableBtn" id="table-4" data-toggle="modal" isOccupy="0"
+              data-target="#Not-Occupied">table-4</button>
           </div>
         </div>
       </div>
@@ -88,7 +91,7 @@
                   <button type="button" class="btn btn-lg btn-primary" id="btn-app">Appetizer</button>
                 </div>
                 <div class="col-md-3" id="Entre">
-                  <button type="button" class="btn btn-lg" id="btn-ent">Entre'</button>
+                  <button type="button" class="btn btn-lg " id="btn-ent">Entre'</button>
                 </div>
                 <div class="col-md-3" id="Desert">
                   <button type="button" class="btn btn-lg" id="btn-des">Desert</button>
@@ -120,46 +123,38 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class=" col-md-7">
-                <h4 class="text-danger"><strong>Appetizer</strong></h4>
-                <form id="AppOne">
-                  wagyu meatballs: <input type="text" size="4">
-                </form>
-                <form id="AppTwo">
-                  pan seared scallops: <input type="text" size="4">
-                </form>
-                <form id="AppThree">
-                  Lobster risotto: <input type="text" size="4">
-                </form>
-                <br>
+              <div class=" offset-md-3 col-md-7">
+                <form>
+                  <h4 class="text-danger"><strong>Appetizer</strong></h4>
 
-                <h4 class="text-danger"><strong>Entre'</strong></h4>
-                <form id="EntOne">
-                  beef wellington: <input type="text" size="4">
-                </form>
-                <form id="EntTwo">
-                  roasted rack of lamb: <input type="text" size="4">
-                </form>
-                <form id="EntThree">
-                  crispy skin salmon: <input type="text" size="4">
-                </form>
-                <br>
+                  wagyu meatballs: <input type="text" size="4" id="AppOne"><br>
+                  pan seared scallops: <input type="text" size="4" id="AppTwo"><br>
+                  Lobster risotto: <input type="text" size="4" id="AppThree">
 
-                <h4 class="text-danger"><strong>Desert</strong></h4>
-                <form id="DesOne">
-                  sticky toffee pudding: <input type="text" size="4">
+                  <br><br>
+
+                  <h4 class="text-danger"><strong>Entre'</strong></h4>
+
+                  beef wellington: <input type="text" size="4" id="EntOne"><br>
+                  roasted rack of lamb: <input type="text" size="4" id="EntTwo"><br>
+                  crispy skin salmon: <input type="text" size="4" id="EntThree">
+
+                  <br><br>
+
+                  <h4 class="text-danger"><strong>Desert</strong></h4>
+
+                  sticky toffee pudding: <input type="text" size="4" id="DesOne"><br>
+                  cranberry soufflé: <input type="text" size="4" id="DesTwo"><br>
+                  <br><br>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="submitBtn">Finish Order &
+                    Submit</button>
                 </form>
-                <form id="DesTwo">
-                  cranberry soufflé: <input type="text" size="4">
-                </form>
+
                 <br>
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" id="submitBtn">Finish Order &
-              Submit</button>
-          </div>
+
         </div>
 
       </div>
@@ -170,6 +165,7 @@
   <!-- Here start javascript -->
 
   <script type="text/javascript">
+    $(".tableBtn").on("click",chosenTable);
     $("#Appetizer").on("click", changeBtnApp);
     $("#Entre").on("click", changeBtnEnt);
     $("#Desert").on("click", changeBtnDes);
@@ -177,7 +173,7 @@
     $("#submitBtn").on("click", changeToOccupied)
     $("#clearBtn").on("click", changeToNotOccupied)
     var countApp = 0;
-    console.log("countApp: ", countApp)
+    var selectedTable = "";
     function changeBtnApp() {
       $("#btn-app").attr("disabled", true);
       $("#btn-app").removeClass("btn-primary");
@@ -222,19 +218,23 @@
 
     }
     function changeToOccupied() {
-      console.log("this is what? ", this)
-      $("#table-1").removeAttr("isOccupy");
-      $("#table-1").removeAttr("data-target");
-      $("#table-1").attr("isOccupy", "1");
-      $("#table-1").attr("data-target", "#Occupied")
+      $('#' + selectedTable).removeAttr("isOccupy");
+      $('#' + selectedTable).removeAttr("data-target");
+      $('#' + selectedTable).attr("isOccupy", "1");
+      $('#' + selectedTable).attr("data-target", "#Occupied")
+      selectedTable ="";
     }
     function changeToNotOccupied() {
-      $("#table-1").removeAttr("isOccupy");
-      $("#table-1").removeAttr("data-target");
-      $("#table-1").attr("isOccupy", "0");
-      $("#table-1").attr("data-target", "#Not-Occupied")
+      $('#' + selectedTable).removeAttr("isOccupy");
+      $('#' + selectedTable).removeAttr("data-target");
+      $('#' + selectedTable).attr("isOccupy", "0");
+      $('#' + selectedTable).attr("data-target", "#Not-Occupied")
+      selectedTable ="";
     }
-
+    function chosenTable(){
+      selectedTable = this.id
+      console.log("selectedTable: ",selectedTable)
+    }
 
   </script>
 
