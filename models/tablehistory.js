@@ -30,9 +30,9 @@ module.exports = function(sequelize, DataTypes) {
   TableHistory.associate = (models) =>{
     models.TableHistory.belongsTo(models.Diningroom,{
       onDelete: "CASCADE",
-      foreignKey: 'foreign_key', as: 'id'
+      foreignKey: 'foreign_key', 
+      as: 'id'
     })
   }
-
   return TableHistory;
 }

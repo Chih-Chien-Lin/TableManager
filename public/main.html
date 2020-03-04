@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Main page</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+  <link rel="stylesheet" href="css/styles.css" media="screen" title="Main">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/styles.css">
@@ -13,12 +13,12 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container view">
     <div class="row">
       <div class="col-md-3">
         <div class="sidenav">
           <a href="#">Back</a>
-          <a href="#">Tables</a>
+          <div id="create-table" style="color: white; font-size: 18px;">Create Table</div>
           <a href="#"> orders</a>
           <a href="#">payment</a>
 
@@ -31,7 +31,6 @@
           </div>
         </div>
         <div class="row">
-          <!-- </div> -->
           <div class="col-md-3">
             <button type="button" class="btn btn-info btn-lg" id="table-1" data-toggle="modal" isOccupy="0"
               data-target="#Not-Occupied">table-1</button>
@@ -238,6 +237,8 @@
 
 
   </script>
+
+
 
 </body>
 

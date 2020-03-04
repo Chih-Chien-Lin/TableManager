@@ -4,13 +4,36 @@ $(function() {
         //display of model DOM === "block"
     });
 
-    $("#create-table").on("submit", function(event) { //this creates a table in the diningroom.js file
-        event.preventDefault();
-        var totalSeats = $("#table-count").val().trim();
-        totalSeats = parseInt(tableCount);
+    $("#create-table").on("click", function() { 
+        var totalSeats =  $("#table-count").val().trim();
+        totalSeats = parseInt(totalSeats);
         let seats = {
             seats: totalSeats
         }
+
+        // let twoSeat = `<div class="class-container">
+        // <div class="container m-5 text-center">
+        //     <div class="row">
+        //         <div class="col-sm-5"></div>
+        //         <div class="col-sm-2 check seat rounded-pill table-color"></div>
+        //         <div class="col-sm-5"></div>
+        //     </div>
+        //     <br>
+        //     <div class="row">
+        //         <div class="col-sm-2"></div>
+        //         <div class="col-sm-8 check table table-color"></div>
+        //         <div class="col-sm-2"></div>
+        //     </div>
+        //     <br>
+        //     <div class="row">
+        //         <div class="col-sm-5"></div>
+        //         <div class="col-sm-2 check seat rounded-pill table-color"></div>
+        //         <div class="col-sm-5"></div>
+        //     </div>
+        // </div>
+        // </div>`;
+
+        // document.body.appendChild(twoSeat);
 
         $.ajax("/", {
             type: "POST",
