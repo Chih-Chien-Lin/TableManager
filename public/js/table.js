@@ -4,9 +4,144 @@ $(function() {
         //display of model DOM === "block"
     });
 
-    $("#createtable").on("click", function(event) {
-        var tableCount = $("#table-count").val().trim();
-        tableCount = parseInt(tableCount);
+    $("#create-table").on("submit", function(event) { //this creates a table in the diningroom.js file
+        event.preventDefault();
+        var totalSeats = $("#table-count").val().trim();
+        totalSeats = parseInt(tableCount);
+        let seats = {
+            seats: totalSeats
+        }
+
+        $.ajax("/", {
+            type: "POST",
+            data: seats
+          }).then(function() {
+              console.log("New Table Added!");
+              location.reload();  
+            }
+          );
+
+    });
+
+    $(".in-table-modal").on("click", function() {
+        //display of modal DOM === "block"
+        //display of occupied DOM == "block"
+        //display of entree DOM == "none"
+        //display of dessert DOM == "none"
+        //display of pay DOM = "none"
+    });
+
+    // the class check-in is the appetizer button, this is to guarentee the customer has placed an order and can generate a table id, otherwise if a customer walks out you don't have a "dead" table history.
+    $(".check-in").on("submit",function(event){ 
+        event.preventDefault();
+        var id = $(this).data("id");
+        //this creates a JSON which will turn the table avaibility false and the id is used to tell it which table is now not availible
+        var availability = { 
+            availability: false,
+            id: id
+        };
+        $.ajax("/availability", {
+            type: "PUT",
+            data: availability
+        }).then(function(res) {
+            //time will grab the time from moment and change the table_color to green, so when it renders on a reload it'll be green.
+            var time = { 
+                start_at: moment.format('LTS'),
+                table_color: "green"
+            }
+            $.ajax("/check-in", {
+                type: 'POST',
+                data: time
+            }).then(function(){
+                location.reload()
+            })
+        });
     })
 
+    // $(".check-in").on("submit", function(event) {  <--- same function as above but reversed the order
+    //     event.preventDefault();
+    //     var id = $(this).data("id");
+    //     var time = {
+    //         start_at: moment.format('LTS'),
+    //         table_color: "green"
+    //     }
+    //     $.ajax("/check-in", {
+    //         type: 'POST',
+    //         data: time
+    //     }).then(function(response) {
+    //         if (response !== null) {
+    //             var availability = {
+    //                 availability: false,
+    //                 id: id
+    //             };
+
+    //             $.ajax("/availability", {
+    //                 type: "PUT",
+    //                 data: availability
+    //             }).then(function(res) {
+    //                 location.reload();
+    //             });
+    //         }
+    //     });
+    // });
+
+    $(".entree").on("submit", function(event){
+        event.preventDefault();
+        let tableId = $(this).data("tableId")
+        let tableColor = {
+            table_color: "Yellow",
+            id: tableId
+        }
+        $.ajax("/entree",{
+            type: "PUT",
+            data: tableColor
+        }).then(function(){
+            console.log("Entree has been served!")
+            location.reload()
+        })
+    })
+
+    $(".dessert").on("submit", function(event){
+        event.preventDefault();
+        let tableId = $(this).data("tableId")
+        let tableColor = {
+            table_color: "Red",
+            id: tableId
+        }
+        $.ajax("/entree",{
+            type: "PUT",
+            data: tableColor
+        }).then(function(){
+            console.log("Dessert has been served!")
+        })
+    })
+    // $(".entree")
+    $(".clear").on("submit", function(event){
+        event.preventDefault()
+        let tableId =$(this).data("tableId");
+        let id = $(this).data("id");
+        let availability = true;
+
+        let update = {
+            availability: availability,
+            id: id
+        }
+        $.ajax("/availability", {
+            type: "PUT",
+            data: update
+        }).then(function(){
+            let clearTable = {
+                table_color: white,
+                end_at: moment.format('LTS'),
+                id: tableId
+            };
+            $.ajax("/clear",{
+                type: "PUT",
+                data: clearTable
+            }).then(function(dbClear){
+                // res.render("Index", dbClear) <-- think render goes in the route folder but either way I think it automatically renders when the page reloads
+                location.reload()
+            })
+        })
+    })
 });
