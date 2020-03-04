@@ -4,7 +4,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        len: [1]
+        len: [2,6],
+        isInt: true
       }
     },
     availability: {

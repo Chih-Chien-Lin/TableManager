@@ -115,7 +115,7 @@ $(function() {
             console.log("Dessert has been served!")
         })
     })
-    // $(".entree")
+
     $(".clear").on("submit", function(event){
         event.preventDefault()
         let tableId =$(this).data("tableId");
