@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -16,8 +17,7 @@
         <h2>Modal Example</h2>
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Occupied">Occupied</button>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-            data-target="#Not-Occupied">Not-Occupied</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Not-Occupied">Not-Occupied</button>
 
 
         <!-- Modal Occupied -->
@@ -33,35 +33,24 @@
 
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-6">
-                                <h4 class="text-danger"><strong>order: {{ order_id }}</strong></h4>
-                                <P>appetizer: {{ appetizer }}</P>
-                                <p>Entre: {{ Entre }}</p>
-                                <p>Desert: {{ Desert }}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <h4 class="text-danger"><strong>order: {{ order_id }}</strong></h4>
-                                <P>appetizer: {{ appetizer }}</P>
-                                <p>Entre: {{ Entre }}</p>
-                                <p>Desert: {{ Desert }}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4 class="text-danger"><strong>order: {{ order_id }}</strong></h4>
-                                <P>appetizer: {{ appetizer }}</P>
-                                <p>Entre: {{ Entre }}</p>
-                                <p>Desert: {{ Desert }}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <h4 class="text-danger"><strong>order: {{ order_id }}</strong></h4>
-                                <P>appetizer: {{ appetizer }}</P>
-                                <p>Entre: {{ Entre }}</p>
-                                <p>Desert: {{ Desert }}</p>
+                            <div class="offset-md-2 col-md-8">
+                                <h4 class="text-danger"><strong>Appetizer</strong></h4>
+                                <P id="AppOne">wagyu meatballs: {{ Count }}</P>
+                                <p>pan seared scallops: {{ AppTwoCount }}</p>
+                                <p>Lobster risotto: {{ AppThreeCount }}</p>
+                                <br>
+                                <h4 class="text-danger"><strong>Entre'</strong></h4>
+                                <P>beef wellington: {{ EntOneCount }}</P>
+                                <p>roasted rack of lamb: {{ EntrTwoCount }}</p>
+                                <p>crispy skin salmon: {{ EntrThreeCount }}</p>
+                                <br>
+                                <h4 class="text-danger"><strong>Desert</strong></h4>
+                                <P>sticky toffee pudding: {{ DesOneCount }}</P>
+                                <p>cranberry soufflé: {{ DesTwoCount }}</p>
+                                <br>
                             </div>
                         </div>
-                        <br>
+
                         <!-- buttons below -->
                         <!-- <div class="modal-footer"> -->
                         <div class="row">
@@ -80,7 +69,7 @@
         </div>
 
 
-        <!-- Modal Not-Occupied -->
+        <!-- Modal Not-Occupied, ordering system -->
         <div class="modal fade" id="Not-Occupied" role="dialog">
             <div class="modal-dialog">
 
@@ -91,17 +80,60 @@
                         <h4 class="modal-title">Table {{ table_name }}</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Some text in the modal.</p>
+                        <div class="row">
+                            <div class="offset-md-5 col-md-7">
+                                <h4 class="text-danger"><strong>Appetizer</strong></h4>
+                                <form id="AppOne">
+                                    wagyu meatballs:  <input type="text" size="4">
+                                </form>
+                                <form id="AppTwo">
+                                    pan seared scallops:  <input type="text" size="4">
+                                </form>
+                                <form id="AppThree">
+                                    Lobster risotto:  <input type="text" size="4">
+                                </form>
+                                <br>
+
+                                <h4 class="text-danger"><strong>Entre'</strong></h4>
+                                <form id="EntOne">
+                                    beef wellington:  <input type="text" size="4">
+                                </form>
+                                <form id="EntTwo">
+                                    roasted rack of lamb:  <input type="text" size="4">
+                                </form>
+                                <form id="EntThree">
+                                    crispy skin salmon:  <input type="text" size="4">
+                                </form>
+                                <br>
+
+                                <h4 class="text-danger"><strong>Desert</strong></h4>
+                                <form id="DesOne">
+                                    sticky toffee pudding:  <input type="text" size="4">
+                                </form>
+                                <form id="DesTwo">
+                                    cranberry soufflé:  <input type="text" size="4">
+                                </form>
+                                <br>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" id="submitBtn">Finish Order &
+                            Submit</button>
                     </div>
                 </div>
 
             </div>
         </div>
+
+
+
+
+
+        <!-- Here start javascript -->
+
         <script type="text/javascript">
-            $("#Appetizer").on("click", changeBtnApp);
+             $("#Appetizer").on("click", changeBtnApp);
             $("#Entre").on("click", changeBtnEnt);
             $("#Desert").on("click", changeBtnDes);
             $("#clear").on("click", changeBtnCle);
@@ -114,8 +146,43 @@
                 $("#btn-ent").addClass("btn-primary");
                 countApp++;
             }
-         
-           
+            function changeBtnEnt() {
+                if (countApp == 1) {
+                    $("#btn-ent").attr("disabled", true);
+                    $("#btn-ent").removeClass("btn-primary");
+                    $("#btn-ent").addClass("btn-secondary");
+                    $("#btn-des").addClass("btn-primary");
+                    countApp++;
+                } else {
+                    return
+                }
+
+            }
+            function changeBtnDes() {
+                if (countApp == 2) {
+                    $("#btn-des").attr("disabled", true);
+                    $("#btn-des").removeClass("btn-primary");
+                    $("#btn-des").addClass("btn-secondary");
+                    countApp++;
+                } else {
+                    return
+                }
+
+            }
+            function changeBtnCle() {
+                if (countApp == 3) {
+                    $("#btn-app").attr("disabled", false);
+                    $("#btn-ent").attr("disabled", false);
+                    $("#btn-des").attr("disabled", false);
+                    $("#btn-app").removeClass("btn-secondary");
+                    $("#btn-app").addClass("btn-primary");
+                    countApp = 0;
+                } else {
+                    return
+                }
+
+            }
+
 
         </script>
 </body>
