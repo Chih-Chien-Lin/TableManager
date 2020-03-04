@@ -6,9 +6,9 @@ module.exports = function(sequelize, DataTypes) {
       end_at: {
         type: DataTypes.TIME
       },
-      app_time: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: '0',
+      table_color: {
+        type: DataTypes.STRING,
+        defaultValue: 'White',
       },
       entree_time: {
         type: DataTypes.BOOLEAN,
