@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
   var TableHistory = sequelize.define("TableHistory", {
     start_at: {
-      type: DataTypes.TIME
+      type: DataTypes.INTEGER
     },
     end_at: {
       type: DataTypes.TIME
@@ -10,30 +10,25 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       defaultValue: 'White',
     },
-    entree_time: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: '0',
-    },
-    dessert_time: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: '0',
-    },
-    foreign_key: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Diningroom',
-        key: 'id'
-      }
-    }
-}, {
+    // entree_time: {
+    //   type: DataTypes.BOOLEAN,
+    //   defaultValue: '0',
+    // },
+    // dessert_time: {
+    //   type: DataTypes.BOOLEAN,
+    //   defaultValue: '0',
+    // },
+  }, {
   freezeTableName: true
-});
+  });
 
-  TableHistory.associate = (models) =>{
+//the associate below will automatically make a new foreign key called DiningroomID that will link the "tableHistory" table to the "diningroom" table. I ran node server like this and saw that sequelize created a foreign key for us to link. 
+
+  TableHistory.associate = function(models) {
     models.TableHistory.belongsTo(models.Diningroom,{
-      onDelete: "CASCADE",
-      foreignKey: 'foreign_key', 
-      as: 'ids'
+      foreignKey: {
+        allowNull: false
+      },
     })
   }
   return TableHistory;

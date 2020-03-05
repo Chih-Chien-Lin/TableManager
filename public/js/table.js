@@ -54,32 +54,51 @@ $(function() {
         //display of pay DOM = "none"
     });
 
+    //*NEW* OFF THE AIRPLANE! this is a easier function since we can link via foreign key. 
+    $(".check-in").on("click", function () {
+        var tableId = $(this).data("id"); //this grabs the tableId that we will reference which table we are creating a new history for
+        var newTable = {
+          start_at: moment.format("LTS"), //this sets the start time
+          tableColor: blue,
+        //   availability: false, <-- left this commented out for now since we dont need availability, but it's here if we do
+          DiningroomId: tableId //we will set the foreign key that sequelize generated for us to the table id, so now "tablehistory" and "diningroom" are linked
+        }
+        $.ajax("/check-in",{
+            type: "POST",
+            data: newTable
+        }).then(function(response){
+          
+          console.log("New customer recieved!")
+          location.reload()
+        })
+      })
+
     // the class check-in is the appetizer button, this is to guarentee the customer has placed an order and can generate a table id, otherwise if a customer walks out you don't have a "dead" table history.
-    $(".check-in").on("submit",function(event){ 
-        event.preventDefault();
-        var id = $(this).data("id");
-        //this creates a JSON which will turn the table avaibility false and the id is used to tell it which table is now not availible
-        var availability = { 
-            availability: false,
-            id: id
-        };
-        $.ajax("/availability", {
-            type: "PUT",
-            data: availability
-        }).then(function(res) {
-            //time will grab the time from moment and change the table_color to green, so when it renders on a reload it'll be green.
-            var time = { 
-                start_at: moment.format('LTS'),
-                table_color: "blue"
-            }
-            $.ajax("/check-in", {
-                type: 'POST',
-                data: time
-            }).then(function(){
-                location.reload()
-            })
-        });
-    })
+    // $(".check-in").on("submit",function(event){ 
+    //     event.preventDefault();
+    //     var id = $(this).data("id");
+    //     //this creates a JSON which will turn the table avaibility false and the id is used to tell it which table is now not availible
+    //     var availability = { 
+    //         availability: false,
+    //         id: id
+    //     };
+    //     $.ajax("/availability", {
+    //         type: "PUT",
+    //         data: availability
+    //     }).then(function(res) {
+    //         //time will grab the time from moment and change the table_color to green, so when it renders on a reload it'll be green.
+    //         var time = { 
+    //             start_at: moment.format('LTS'),
+    //             table_color: "blue"
+    //         }
+    //         $.ajax("/check-in", {
+    //             type: 'POST',
+    //             data: time
+    //         }).then(function(){
+    //             location.reload()
+    //         })
+    //     });
+    // })
 
     // $(".check-in").on("submit", function(event) {  <--- same function as above but reversed the order
     //     event.preventDefault();
@@ -111,7 +130,7 @@ $(function() {
     $(".appetizer").on("click", function(event){
         alert("hello");
         // event.preventDefault();
-        // let tableId = $(this).data("tableId")
+        // let tableId = $(this).data("customerId")
         // let tableColor = {
         //     table_color: "green",
         //     id: tableId
@@ -127,7 +146,7 @@ $(function() {
 
     $(".entree").on("submit", function(event){
         event.preventDefault();
-        let tableId = $(this).data("tableId")
+        let tableId = $(this).data("customerId")
         let tableColor = {
             table_color: "Yellow",
             id: tableId
@@ -143,7 +162,7 @@ $(function() {
 
     $(".dessert").on("submit", function(event){
         event.preventDefault();
-        let tableId = $(this).data("tableId")
+        let tableId = $(this).data("customerId")
         let tableColor = {
             table_color: "Red",
             id: tableId
@@ -158,30 +177,21 @@ $(function() {
 
     $(".clear").on("submit", function(event){
         event.preventDefault()
-        let tableId =$(this).data("tableId");
-        let id = $(this).data("id");
-        let availability = true;
-
-        let update = {
-            availability: availability,
-            id: id
-        }
-        $.ajax("/availability", {
+        let customerId =$(this).data("customerId");
+        // let id = $(this).data("id");
+        // let availability = true;
+        let clearTable = {
+            table_color: white,
+            end_at: moment.format('LTS'),
+            customerId: customerId
+        };
+        $.ajax("/clear",{
             type: "PUT",
-            data: update
-        }).then(function(){
-            let clearTable = {
-                table_color: white,
-                end_at: moment.format('LTS'),
-                id: tableId
-            };
-            $.ajax("/clear",{
-                type: "PUT",
-                data: clearTable
-            }).then(function(dbClear){
-                // res.render("Index", dbClear) <-- think render goes in the route folder but either way I think it automatically renders when the page reloads
-                location.reload()
-            })
+            data: clearTable
+        }).then(function(dbClear){
+            // res.render("Index", dbClear) <-- think render goes in the route folder but either way I think it automatically renders when the page reloads
+            location.reload()
         })
     })
+
 });
