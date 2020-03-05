@@ -1,9 +1,5 @@
 $(function () {
 
-    $("#create-table-modal").on("click", function () {
-        //display of model DOM === "block"
-    });
-
     $("#create-table").on("click", function () {
         var totalSeats = $("#table-count").val().trim();
         totalSeats = parseInt(totalSeats);
@@ -44,14 +40,6 @@ $(function () {
         }
         );
 
-    });
-
-    $(".in-table-modal").on("click", function () {
-        //display of modal DOM === "block"
-        //display of occupied DOM == "block"
-        //display of entree DOM == "none"
-        //display of dessert DOM == "none"
-        //display of pay DOM = "none"
     });
 
     //*NEW* OFF THE AIRPLANE! this is a easier function since we can link via foreign key. 
