@@ -2,13 +2,14 @@ var express = require("express");
 var app = express();
 var PORT = process.env.PORT || 8080;
 var db = require("./models");
-var handlebars = require("express-handlebars");
+var exphbs = require("express-handlebars");
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static("public"))
 
-app.engine("handlebars", handlebars({ defaultLayout: "main" }));
+// Set Handlebars.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 require("./routes/html-routes.js")(app);
