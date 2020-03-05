@@ -12,8 +12,8 @@ module.exports = function(app) {
 
   app.post("/check-in", function(req, res) {
     db.TableHistory.create(req.body);
-    res.json({ tableId: results.insertId}) //this should make a "tableId" where the id of the table history is used sort of like an order number so in the handlebar we need an {{ id }} which is to identify the total amount of tables available in the restuarant and {{ tableId }} is the current party occupying the table, like an order order. We will set a data-id = {{ id }} and a data-tableId = {{ tableId }} in the handlebar we can use the value of data-tableId to pull from the tablehistory.
-  });
+    res.json({ customerId: results.insertId}) //this should make a "tableId" where the id of the table history is used sort of like an order number so in the handlebar we need an {{ id }} which is to identify the total amount of tables available in the restuarant and {{ tableId }} is the current party occupying the table, like an order order. We will set a data-id = {{ id }} and a data-tableId = {{ tableId }} in the handlebar we can use the value of data-tableId to pull from the tablehistory.
+  });//changed the name from "tableId" to "customerId" too many tables being thrown or flipped
 
 
   //this is used to change the availbility of the table when you click on appetizer or clear
@@ -67,10 +67,10 @@ module.exports = function(app) {
       },
       {
         where: {
-          id: req.body.id
+          customerId: req.body.customerId
         }
       }).then(function(){
-        res.json({ tableId: ""}) //hoping this will clear the table ID so when you click on the table, nothing will show up 
+        // res.json({ tableId: ""}) // don't think we need this //hoping this will clear the table ID so when you click on the table, nothing will show up 
       })
   })
 };
