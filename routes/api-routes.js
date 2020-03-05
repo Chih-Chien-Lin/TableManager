@@ -9,6 +9,11 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/menu",function(req,res){
+    db.Menu.create(req.body);
+    // console.log(res);
+    // res.json({ Menu })
+  });
 
   app.post("/check-in", function(req, res) {
     db.TableHistory.create(req.body);

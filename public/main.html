@@ -9,6 +9,7 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/styles.css">
+  <script src="./js/table.js"></script>
 
 </head>
 
@@ -49,8 +50,29 @@
           </div>
         </div>
       </div>
-      <!-- here is the setting of modal -->
+      <!-- here is testing manu dbs -->
+      
+      <form id="formTest">
+        <h4 class="text-danger"><strong>Add new Dish</strong></h4>
 
+        Dish Name: <input type="text" size="30" id="AddDishName"><br>
+        Category: <select id = AddCategory>
+                    <option value="null"></option>
+                    <option value="Appetizer">Appetizer</option>
+                    <option value="Entre">Entre'</option>
+                    <option value="Desert">Desert</option>
+                </select>
+        Price: <input type="text" size="4" id="AddPrice">
+        Cook Time:  <input type="text" size="4" id="AddCookTime" placeholder="minutes">
+        <br>
+        <button type="button" class="btn btn-default" id="test">Submit</button>
+      </form>
+
+
+
+      
+      <!-- here is the setting of modal -->
+      
       <!-- Modal Occupied -->
       <div class="modal fade" id="Occupied" role="dialog">
         <div class="modal-dialog">
@@ -218,6 +240,7 @@
 
     }
     function changeToOccupied() {
+      console.log("jump to here")
       $('#' + selectedTable).removeAttr("isOccupy");
       $('#' + selectedTable).removeAttr("data-target");
       $('#' + selectedTable).attr("isOccupy", "1");

@@ -54,6 +54,25 @@ $(function() {
         //display of pay DOM = "none"
     });
 
+
+    $("#test").on("click",function(){
+
+        var newDish = {
+            item: $("#AddDishName").val().trim(),
+            category: $("#AddCategory").val().trim(),
+            price: parseFloat($("#AddPrice").val().trim()),
+            cook_time: parseInt($("#AddCookTime").val().trim())
+        }
+        console.log("newDish: ",newDish)
+        $.ajax("/menu",{
+            type: "POST",
+            data: newDish
+        }).then(function(response){
+            console.log("New dish added!")
+            location.reload();
+        })
+    })
+
     //*NEW* OFF THE AIRPLANE! this is a easier function since we can link via foreign key. 
     $(".check-in").on("click", function () {
         var tableId = $(this).data("id"); //this grabs the tableId that we will reference which table we are creating a new history for
