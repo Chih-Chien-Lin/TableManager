@@ -1,6 +1,6 @@
 $(function () {
 
-    $("#create-table").on("click", function () {
+    $("#create-table").on("submit", function () {
         var totalSeats = $("#table-count").val().trim();
         totalSeats = parseInt(totalSeats);
         let seats = {
