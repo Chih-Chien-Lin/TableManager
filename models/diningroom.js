@@ -5,11 +5,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true, // Need to change this later when we allow for seat
       validate: {
         len: [1,6],
-        isInt: true}
+        isInt: true
+      }
     },
     // availability: {
     //   type: DataTypes.BOOLEAN,
-    //   defaultValue: true,}
+    //   defaultValue: true},
     },
     {
       freezeTableName: true

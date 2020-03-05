@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     //   defaultValue: '0',
     // },
   }, {
-  freezeTableName: true
+    freezeTableName: true
   });
 
 //the associate below will automatically make a new foreign key called DiningroomID that will link the "tableHistory" table to the "diningroom" table. I ran node server like this and saw that sequelize created a foreign key for us to link. 
