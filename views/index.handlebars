@@ -1,5 +1,5 @@
-<div class="sidenav">
-  <a href="#">Back</a>
+{{!-- <div class="sidenav">
+  <a href="#">Back</a> --}}
   <div class="side-button text-center"><u>Create Table:</u>
   choose # of Seats
     <select id="table-count"> 
@@ -9,15 +9,16 @@
     </select>
     <button class="btn btn-primary rounded-pill" id="create-table">Build</button>
   </div>
-  <a href="#">orders</a>
+  {{!-- <a href="#">orders</a>
   <a href="#">payment</a>
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#View-Menu">Menu</button>
-</div>
+</div> --}}
 
-<div class="inner-section check" id="section-one">section 1</div>
-<div class="inner-section check" id="section-two">section 2</div>
-<div class="inner-section check" id="section-three">section 3</div>
-<div class="inner-section check" id="section-four">section 4</div>
+<div> Tables go below
+  {{#each tables}}
+    <div> This is table: {{id}} and has this many {{seats}} </div>
+  {{/each}}
+</div>
 
         
 
@@ -256,7 +257,8 @@
         </div>
 
         <div class="modal-body">
-          <form>
+
+          <form id="formTest2">
             What Dish you want to delete? <br><br>
             <select id="delete-dish">
               <option value="null">Appetizer</option>
