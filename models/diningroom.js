@@ -3,10 +3,6 @@ module.exports = function(sequelize, DataTypes) {
     seats: {
       type: DataTypes.INTEGER,
       allowNull: true, // Need to change this later when we allow for seat
-      validate: {
-        len: [1,6],
-        isInt: true
-      }
     },
     // availability: {
     //   type: DataTypes.BOOLEAN,
