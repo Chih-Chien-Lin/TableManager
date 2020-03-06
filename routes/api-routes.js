@@ -5,7 +5,7 @@ module.exports = function(app) {
     db.Diningroom.create({
       seats: req.body
     }).then(function(dbDiningroom) {
-        res.render("index", dbDiningroom);
+        res.json(dbDiningroom);
     });
   });
 
