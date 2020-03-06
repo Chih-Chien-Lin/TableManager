@@ -16,8 +16,8 @@ module.exports = function(app) {
       }
       console.table(newobject)
       res.render("index", newobject)
-    })
-  })
+    });
+  });
 
   app.post("/tables", function(req, res) {
     db.Diningroom.create(req.body).then(function(dbDiningroom) {
