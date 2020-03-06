@@ -9,11 +9,11 @@ $(function () {
         }
         console.log(seats);
 
-        let twoSeat = `<div class="class-container">
+        let twoSeat = `<div class="table-container check">
         <div class="container m-5 text-center">
             <div class="row">
                 <div class="col-sm-5"></div>
-                <div class="col-sm-2 check seat rounded-pill table-color"></div>
+                <div class="col-sm-2 check seat rounded-pill"></div>
                 <div class="col-sm-5"></div>
             </div>
             <br>
@@ -25,14 +25,14 @@ $(function () {
             <br>
             <div class="row">
                 <div class="col-sm-5"></div>
-                <div class="col-sm-2 check seat rounded-pill table-color"></div>
+                <div class="col-sm-2 check seat rounded-pill"></div>
                 <div class="col-sm-5"></div>
             </div>
         </div>
         </div>`;
 
-        let fourSeat = `<div class="table-container">
-        <div class="container">
+        let fourSeat = `<div class="table-container check">
+        <div class="container m-5">
             <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-2 check seat rounded-pill"></div>
@@ -43,36 +43,8 @@ $(function () {
             <br>
             <div class="row">
                 <div class="col-sm-2"></div>
-                <div class="col-sm-8 check table table-color">4-Person Table</div>
+                <div class="col-sm-8 check table table-color"></div>
                 <div class="col-sm-2"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-3"></div>
-            </div>
-        </div>
-        </div>`;
-
-        let sixSeat = `<div class="table-container m-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-3"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-1 check side-seat rounded-pill"></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-8 check table table-color">6-Person Table</div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-1 check side-seat rounded-pill"></div>
             </div>
             <br>
             <div class="row">
@@ -85,54 +57,48 @@ $(function () {
         </div>
         </div>`;
 
-        if (count == 0) {
-            if (totalSeats == 2) {
-                $("#section-one").append(twoSeat);
-                count++;
-            } else if (totalSeats == 4) {
-                $("#section-one").append(fourSeat);
-                count++;
-            } else {
-                $("#section-one").append(sixSeat);
-                count++;
-            }
-        } else if (count == 1) {
-            if (totalSeats == 2) {
-                $("#section-two").append(twoSeat);
-                count++;
-            } else if (totalSeats == 4) {
-                $("#section-two").append(fourSeat);
-                count++;
-            } else {
-                $("#section-two").append(sixSeat);
-                count++;
-            }
-        } else if (count == 2) {
-            if (totalSeats == 2) {
-                $("#section-three").append(twoSeat);
-                count++;
-            } else if (totalSeats == 4) {
-                $("#section-three").append(fourSeat);
-                count++;
-            } else {
-                $("#section-three").append(sixSeat);
-                count++;
-            }
-        } else if (count == 3) {
-            if (totalSeats == 2) {
-                $("#section-four").append(twoSeat);
-                count++;
-            } else if (totalSeats == 4) {
-                $("#section-four").append(fourSeat);
-                count++;
-            } else {
-                $("#section-four").append(sixSeat);
-                count++;
-            }
+        let sixSeat = `<div class="table-container check">
+        <div class="container m-5">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2 check seat rounded-pill"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 check seat rounded-pill"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 check seat rounded-pill"></div>
+                <div class="col-sm-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8 check table table-color"></div>
+                <div class="col-sm-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2 check seat rounded-pill"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 check seat rounded-pill"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 check seat rounded-pill"></div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+        </div>`;
+
+
+        if (totalSeats == 2) {
+            $("#section-one").append(twoSeat);
+            count++;
+        } else if (totalSeats == 4) {
+            $("#section-one").append(fourSeat);
+            count++;
         } else {
-            alert("Your restaurant can only hold up to four tables.");
-            return;
+            $("#section-one").append(sixSeat);
+            count++;
         }
+    
       
 
         $.ajax("/", {
