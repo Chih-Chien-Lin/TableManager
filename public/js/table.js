@@ -101,7 +101,7 @@ $(function () {
     
       
 
-        $.ajax("/", {
+        $.ajax("/tables", {
             type: "POST",
             data: seats
         }).then(function() {
