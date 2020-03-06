@@ -319,6 +319,8 @@ $(function () {
         $("#btn-app").removeClass("btn-primary");
         $("#btn-app").addClass("btn-secondary");
         $("#btn-ent").addClass("btn-primary");
+        $('#' + selectedTable).removeClass("btn-danger");
+        $('#' + selectedTable).addClass("btn-warning")
         countApp++;
     }
     function changeBtnEnt() {
@@ -327,6 +329,8 @@ $(function () {
             $("#btn-ent").removeClass("btn-primary");
             $("#btn-ent").addClass("btn-secondary");
             $("#btn-des").addClass("btn-primary");
+            $('#' + selectedTable).removeClass("btn-warning");
+            $('#' + selectedTable).addClass("btn-success")
             countApp++;
         } else {
             return
@@ -338,6 +342,8 @@ $(function () {
             $("#btn-des").attr("disabled", true);
             $("#btn-des").removeClass("btn-primary");
             $("#btn-des").addClass("btn-secondary");
+            $('#' + selectedTable).removeClass("btn-success");
+            $('#' + selectedTable).addClass("btn-AB2567")
             countApp++;
         } else {
             return
@@ -362,6 +368,8 @@ $(function () {
         $('#' + selectedTable).removeAttr("data-target");
         $('#' + selectedTable).attr("isOccupy", "1");
         $('#' + selectedTable).attr("data-target", "#Occupied")
+        $('#' + selectedTable).removeClass("btn-info");
+        $('#' + selectedTable).addClass("btn-danger")
         selectedTable = "";
     }
     function changeToNotOccupied() {
@@ -369,6 +377,8 @@ $(function () {
         $('#' + selectedTable).removeAttr("data-target");
         $('#' + selectedTable).attr("isOccupy", "0");
         $('#' + selectedTable).attr("data-target", "#Not-Occupied")
+        $('#' + selectedTable).removeClass("btn-AB2567");
+        $('#' + selectedTable).addClass("btn-info")
         selectedTable = "";
     }
     function chosenTable() {
