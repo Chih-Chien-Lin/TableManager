@@ -1,15 +1,23 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/", function(req, res) {
-    db.Diningroom.findAll().then(function(data) {
-      var hbsobject = {
-        Diningroom: data
+  app.get("/", function(req, res){
+    db.Diningroom.findAll({
+    }).then(function(dbtables){
+      console.log("The get works")
+      console.log(dbtables)
+      let allTables = []
+      dbtables.forEach(element => {
+        let newData = element.dataValues
+        allTables.push(newData)
+      });
+      var newobject = {
+        tables: allTables
       }
-      console.log(hbsobject)
-      res.render("index", hbsobject);
-    });
-  });
+      console.table(newobject)
+      res.render("index", newobject)
+    })
+  })
 
   app.post("/tables", function(req, res) {
     db.Diningroom.create(req.body).then(function(dbDiningroom) {
