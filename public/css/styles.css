@@ -1,3 +1,20 @@
+.side-button {
+  color: white; 
+  font-size: 18px;
+}
+
+.side-button:hover {
+  color: lightblue;
+  font-size: 18px;
+  text-shadow: black 1px 1px;
+}
+
+.inner-section {
+  height: 468px;
+  width: 50%;
+  float: left;
+}
+
 button.submit {
   float: right;
 }
