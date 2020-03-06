@@ -1,10 +1,18 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.post("/", function(req, res) {
-    db.Diningroom.create({
-      seats: req.body
-    }).then(function(dbDiningroom) {
+  app.get("/", function(req, res) {
+    db.Diningroom.findAll().then(function(data) {
+      var hbsobject = {
+        Diningroom: data
+      }
+      console.log(hbsobject)
+      res.render("index", hbsobject);
+    });
+  });
+
+  app.post("/tables", function(req, res) {
+    db.Diningroom.create(req.body).then(function(dbDiningroom) {
         res.json(dbDiningroom);
     });
   });
