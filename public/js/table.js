@@ -44,7 +44,7 @@ $(function () {
 
 
     $("#test").on("click",function(){
-
+        console.log("press the button!")
         var newDish = {
             item: $("#AddDishName").val().trim(),
             category: $("#AddCategory").val().trim(),
