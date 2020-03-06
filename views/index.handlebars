@@ -11,6 +11,7 @@
   </div>
   <a href="#">orders</a>
   <a href="#">payment</a>
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#View-Menu">Menu</button>
 </div>
 
 <div class="inner-section check" id="section-one">section 1</div>
@@ -20,3 +21,263 @@
 
 <script src="js/table.js"></script>
 
+        
+
+      </div>
+    </div>
+    {{!-- Bustons for tables --}}
+    {{!-- <div class="col-md-9">
+      <div class="row">
+        <div class="col-12 col-md-2 mt-4">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <button type="button" class="btn btn-info btn-lg tableBtn" id="table-1" data-toggle="modal" isOccupy="0"
+            data-target="#Not-Occupied">table-1</button>
+        </div>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-info btn-lg tableBtn" id="table-2" data-toggle="modal" isOccupy="0"
+            data-target="#Not-Occupied">table-2</button>
+        </div>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-info btn-lg tableBtn" id="table-3" data-toggle="modal" isOccupy="0"
+            data-target="#Not-Occupied">table-3</button>
+        </div>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-info btn-lg tableBtn" id="table-4" data-toggle="modal" isOccupy="0"
+            data-target="#Not-Occupied">table-4</button>
+        </div>
+      </div>
+    </div>--}}
+  </div>
+
+  {{!-- here is the setting of modal --}}
+
+  {{!-- Modal Occupied --}}
+  <div class="modal fade" id="Occupied" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Table {{ table_name }}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8">
+              <h4 class="text-danger"><strong>Appetizer</strong></h4>
+              <P>{{ Appetizer_dish_1 }}: {{ AppOneCount }}</P>
+              <p>{{ Appetizer_dish_2 }}: {{ AppTwoCount }}</p>
+              <p>{{ Appetizer_dish_3 }}: {{ AppThreeCount }}</p>
+              <br>
+              <h4 class="text-danger"><strong>Entre'</strong></h4>
+              <P>{{ Entre_dish_1 }}: {{ EntOneCount }}</P>
+              <p>{{ Entre_dish_2 }}: {{ EntrTwoCount }}</p>
+              <p>{{ Entre_dish_3 }}: {{ EntrThreeCount }}</p>
+              <br>
+              <h4 class="text-danger"><strong>Desert</strong></h4>
+              <P>{{ Desert_dish_1 }}: {{ DesOneCount }}</P>
+              <p>{{ Desert_dish_2 }}: {{ DesTwoCount }}</p>
+              <br>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col" id="Appetizer">
+              <button type="button" class="btn btn-lg btn-primary" id="btn-app">Appetizer</button>
+            </div>
+            <div class="col" id="Entre">
+              <button type="button" class="btn btn-lg " id="btn-ent">Entre'</button>
+            </div>
+            <div class="col" id="Desert">
+              <button type="button" class="btn btn-lg" id="btn-des">Desert</button>
+            </div>
+            <div class="col" id="clear">
+              <button type="button" class="btn btn-lg btn-primary" id="clearBtn">Clear</button>
+            </div>
+          </div>
+          <br>
+
+
+        </div>
+        <br>
+
+      </div>
+    </div>
+  </div>
+
+  {{!-- Modal Not Occupied --}}
+  <div class="modal fade" id="Not-Occupied" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Table {{ table_name }}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class=" offset-md-3 col-md-7">
+              <form>
+                <h4 class="text-danger"><strong>Appetizer</strong></h4>
+
+                {{ Appetizer_dish_1 }}: <input type="text" size="4" id="AppOne"><br>
+                {{ Appetizer_dish_2 }}: <input type="text" size="4" id="AppTwo"><br>
+                {{ Appetizer_dish_3 }}: <input type="text" size="4" id="AppThree">
+
+                <br><br>
+
+                <h4 class="text-danger"><strong>Entre'</strong></h4>
+
+                {{ Entre_dish_1 }}: <input type="text" size="4" id="EntOne"><br>
+                {{ Entre_dish_2 }}: <input type="text" size="4" id="EntTwo"><br>
+                {{ Entre_dish_3 }}: <input type="text" size="4" id="EntThree">
+
+                <br><br>
+
+                <h4 class="text-danger"><strong>Desert</strong></h4>
+
+                {{ Desert_dish_1 }}: <input type="text" size="4" id="DesOne"><br>
+                {{ Desert_dish_1 }}: <input type="text" size="4" id="DesTwo"><br>
+                <br><br>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="submitBtn">Finish Order &
+                  Submit</button>
+              </form>
+
+              <br>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  {{!-- Modal for Restaurant Menu --}}
+  <div class="modal fade" id="View-Menu" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Our Menu</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8">
+              <h4 class="text-danger"><strong>Appetizer</strong></h4>
+              <ul>
+                <li>{{ Appetizer_dish_1 }}, Price: {{ Price }},Cook Time: {{ Cook-Time }}</li>
+                <li>{{ Appetizer_dish_2 }}, Price: {{ Price }},Cook Time: {{ Cook-Time }}</li>
+                <li>{{ Appetizer_dish_3 }}, Price: {{ Price }},Cook Time: {{ Cook-Time }}</li>
+              </ul>
+
+              <br>
+              <h4 class="text-danger"><strong>Entre'</strong></h4>
+              <ul>
+                <li>{{ Entre_dish_1 }}, Price: {{ Price }},Cook Time: {{ Cook-Time }}</li>
+                <li>{{ Entre_dish_2 }}, Price: {{ Price }},Cook Time: {{ Cook-Time }}</li>
+                <li>{{ Entre_dish_3 }}, Price: {{ Price }},Cook Time: {{ Cook-Time }}</li>
+              </ul>
+
+              <br>
+              <h4 class="text-danger"><strong>Desert</strong></h4>
+              <ul>
+                <li>{{ Desert_dish_1 }}, Price: {{ Price }},Cook Time: {{ Cook-Time }}</li>
+                <li>{{ Desert_dish_2 }}, Price: {{ Price }},Cook Time: {{ Cook-Time }}</li>
+              </ul>
+              <br>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col" id="AddNewDish">
+              <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#Add-Menu">Add New Dish(s)</button>
+            </div>
+            <div class="col" id="DeleteDish">
+              <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#Delete-Menu">Delete Dish</button>
+            </div>
+          </div>
+          <br>
+
+
+        </div>
+        <br>
+
+      </div>
+    </div>
+  </div>
+
+  {{!-- Modal for Add New Dish --}}
+  <div class="modal fade" id="Add-Menu" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Dish(s)</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <form id="formTest">
+            Dish Name: <input type="text" size="30" id="AddDishName"><br><br>
+            Category: <select id=AddCategory>
+              <option value="null"></option>
+              <option value="Appetizer">Appetizer</option>
+              <option value="Entre">Entre'</option>
+              <option value="Desert">Desert</option>
+            </select><br><br>
+            Price: <input type="text" size="4" id="AddPrice"><br><br>
+            Cook Time: <input type="text" size="10" id="AddCookTime" placeholder="minutes">
+            <br><br>
+            <button type="button" class="btn btn-default" id="test">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Modal for delete Dish from menu --}}
+  <div class="modal fade" id="Delete-Menu" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Dish(s)</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <form id="formTest">
+            What Dish you want to delete? <br><br>
+            <select id="delete-dish">
+              <option value="null">Appetizer</option>
+              <option value={{ Appetizer_dish_1 }}>{{ Appetizer_dish_1 }}</option>
+              <option value={{ Appetizer_dish_2 }}>{{ Appetizer_dish_2 }}</option>
+              <option value={{ Appetizer_dish_3 }}>{{ Appetizer_dish_3 }}</option>
+
+              <option value="null">Entre'</option>
+              <option value={{ Entre_dish_1 }}>{{ Entre_dish_1 }}</option>
+              <option value={{ Entre_dish_2 }}>{{ Entre_dish_2 }}</option>
+
+              <option value="null">Desert</option>
+              <option value={{ Desert_dish_1 }}>{{ Desert_dish_1 }}</option>
+              <option value={{ Desert_dish_2 }}>{{ Desert_dish_2 }}</option>
+
+            </select><br><br>
+            <button type="button" class="btn btn-default" id="submitDelete">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
