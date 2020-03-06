@@ -88,23 +88,11 @@ $(function () {
         </div>`;
 
 
-        // if (totalSeats == 2) {
-        //     $("#section-one").append(twoSeat);
-        //     count++;
-        // } else if (totalSeats == 4) {
-        //     $("#section-one").append(fourSeat);
-        //     count++;
-        // } else {
-        //     $("#section-one").append(sixSeat);
-        //     count++;
-        // }
-    
-      
 
         $.ajax("/tables", {
             type: "POST",
             data: seats
-        }).then(function() {
+        }).then(function () {
             console.log("New Table Added!");
             location.reload();
         });
@@ -112,20 +100,39 @@ $(function () {
     });
 
 
-    $("#test").on("click",function(){
-        console.log("press the button!")
+    $("#test").on("click", function () {
+
+        console.log("press the add dish button!")
         var newDish = {
             item: $("#AddDishName").val().trim(),
             category: $("#AddCategory").val().trim(),
             price: parseFloat($("#AddPrice").val().trim()),
             cook_time: parseInt($("#AddCookTime").val().trim())
         }
-        console.log("newDish: ",newDish)
-        $.ajax("/menu",{
+        console.log("newDish: ", newDish)
+        $.ajax("/menu", {
             type: "POST",
             data: newDish
-        }).then(function(response){
+        }).then(function (response) {
             console.log("New dish added!")
+            location.reload();
+        })
+    })
+    
+    var deletedDishID = "";
+
+    $("#submitDelete").on("click", function () {
+
+        console.log("press the delete dish button:(")
+        deletedDishID = parseInt($("#delete-dish").children(":selected").attr("id"));
+
+        console.log("Deleted Dish ID: ", deletedDishID)
+        console.log("url: ","/menu/",deletedDishID)
+        $.ajax({
+            type: "DELETE",
+            url: "/menu/delete/"+ deletedDishID
+        }).then(function(response){
+            console.log("Dish deleted!")
             location.reload();
         })
     })

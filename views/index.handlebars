@@ -20,8 +20,6 @@
   {{/each}}
 </div>
 
-<div id="section-one"></div>
-
         
 
       </div>
@@ -229,9 +227,9 @@
         </div>
 
         <div class="modal-body">
-          <form id="formTest">
+          <form>
             Dish Name: <input type="text" size="30" id="AddDishName"><br><br>
-            Category: <select id=AddCategory>
+            Category: <select id="AddCategory">
               <option value="null"></option>
               <option value="Appetizer">Appetizer</option>
               <option value="Entre">Entre'</option>
@@ -259,11 +257,12 @@
         </div>
 
         <div class="modal-body">
+
           <form id="formTest2">
             What Dish you want to delete? <br><br>
             <select id="delete-dish">
               <option value="null">Appetizer</option>
-              <option value={{ Appetizer_dish_1 }}>{{ Appetizer_dish_1 }}</option>
+              <option id="1">testdish</option>
               <option value={{ Appetizer_dish_2 }}>{{ Appetizer_dish_2 }}</option>
               <option value={{ Appetizer_dish_3 }}>{{ Appetizer_dish_3 }}</option>
 
