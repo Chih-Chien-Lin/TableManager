@@ -88,16 +88,16 @@ $(function () {
         </div>`;
 
 
-        if (totalSeats == 2) {
-            $("#section-one").append(twoSeat);
-            count++;
-        } else if (totalSeats == 4) {
-            $("#section-one").append(fourSeat);
-            count++;
-        } else {
-            $("#section-one").append(sixSeat);
-            count++;
-        }
+        // if (totalSeats == 2) {
+        //     $("#section-one").append(twoSeat);
+        //     count++;
+        // } else if (totalSeats == 4) {
+        //     $("#section-one").append(fourSeat);
+        //     count++;
+        // } else {
+        //     $("#section-one").append(sixSeat);
+        //     count++;
+        // }
     
       
 

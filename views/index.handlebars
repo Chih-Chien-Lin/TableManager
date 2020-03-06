@@ -1,5 +1,5 @@
-<div class="sidenav">
-  <a href="#">Back</a>
+{{!-- <div class="sidenav">
+  <a href="#">Back</a> --}}
   <div class="side-button text-center"><u>Create Table:</u>
   choose # of Seats
     <select id="table-count"> 
@@ -9,17 +9,16 @@
     </select>
     <button class="btn btn-primary rounded-pill" id="create-table">Build</button>
   </div>
-  <a href="#">orders</a>
+  {{!-- <a href="#">orders</a>
   <a href="#">payment</a>
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#View-Menu">Menu</button>
-</div>
+</div> --}}
 
-<!--<div>
-  Should make hellos under here
-  {{#each Diningroom}}
-   <div>hello</div>
+<div> Tables go below
+  {{#each tables}}
+    <div> This is table: {{id}} and has this many {{seats}} </div>
   {{/each}}
-</div>-->
+</div>
 
 <div id="section-one"></div>
 
