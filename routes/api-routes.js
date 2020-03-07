@@ -16,6 +16,7 @@ module.exports = function(app) {
       }
       console.table(newobject)
       res.render("index", newobject)
+
     })
   })
 // route to get all the menu
