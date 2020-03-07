@@ -99,6 +99,19 @@ $(function () {
 
     });
 
+    $("#ViewMenu").on("click",function(){
+        var status = $(this).attr("isoccupy")
+        console.log("check occupy: ",status)
+        event.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "/order/" + status
+        }).then(function (response) {
+            // console.log(response)
+            console.log("Show ordering sys and order info!")
+            // location.reload()
+        })
+    })
 
     $("#test").on("click", function () {
 
@@ -118,7 +131,7 @@ $(function () {
             location.reload();
         })
     })
-    
+
     var deletedDishID = "";
 
     $("#submitDelete").on("click", function () {
@@ -127,30 +140,32 @@ $(function () {
         deletedDishID = parseInt($("#delete-dish").children(":selected").attr("id"));
 
         console.log("Deleted Dish ID: ", deletedDishID)
-        console.log("url: ","/menu/",deletedDishID)
+        console.log("url: ", "/menu/", deletedDishID)
         $.ajax({
             type: "DELETE",
-            url: "/menu/delete/"+ deletedDishID
-        }).then(function(response){
+            url: "/menu/delete/" + deletedDishID
+        }).then(function (response) {
             console.log("Dish deleted!")
             location.reload();
         })
     })
 
     //*NEW* OFF THE AIRPLANE! this is a easier function since we can link via foreign key. 
-    $(".check-in").on("click", function () {
-        var tableId = $(this).data("id"); //this grabs the tableId that we will reference which table we are creating a new history for
+    $("#submitBtn").on("click", function (event) {
+        event.preventDefault();
+        console.log("This is the tableID: " + selectedTable);
         var newTable = {
-            start_at: moment.format("LTS"), //this sets the start time
-            tableColor: blue,
+            // start_at: moment.format("LTS"), //this sets the start time
+            table_color: "danger",
             //   availability: false, <-- left this commented out for now since we dont need availability, but it's here if we do
-            DiningroomId: tableId //we will set the foreign key that sequelize generated for us to the table id, so now "tablehistory" and "diningroom" are linked
+            DiningroomId: selectedTable //we will set the foreign key that sequelize generated for us to the table id, so now "tablehistory" and "diningroom" are linked
         }
+        changeToOccupied();
         $.ajax("/check-in", {
             type: "POST",
             data: newTable
         }).then(function (response) {
-
+            console.log(response)
             console.log("New customer recieved!")
             location.reload()
         })
@@ -283,7 +298,7 @@ $(function () {
     $("#Entre").on("click", changeBtnEnt);
     $("#Desert").on("click", changeBtnDes);
     $("#clear").on("click", changeBtnCle);
-    $("#submitBtn").on("click", changeToOccupied)
+    // $("#submitBtn").on("click", changeToOccupied)
     $("#clearBtn").on("click", changeToNotOccupied)
     var countApp = 0;
     var selectedTable = "";
@@ -357,6 +372,7 @@ $(function () {
     function chosenTable() {
         selectedTable = this.id
         console.log("selectedTable: ", selectedTable)
+        
     }
 });
 
