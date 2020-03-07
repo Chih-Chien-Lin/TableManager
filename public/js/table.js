@@ -113,7 +113,7 @@ $(function () {
         })
     })
 
-    $("#test").on("click", function () {
+    $("#submitAddDish").on("click", function () {
 
         console.log("press the add dish button!")
         var newDish = {
@@ -151,7 +151,7 @@ $(function () {
     })
 
     //*NEW* OFF THE AIRPLANE! this is a easier function since we can link via foreign key. 
-    $("#submitBtn").on("click", function (event) {
+    $("#submitOrderBtn").on("click", function (event) {
         event.preventDefault();
         console.log("This is the tableID: " + selectedTable);
         var newTable = {

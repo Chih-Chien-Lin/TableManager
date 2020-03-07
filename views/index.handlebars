@@ -23,29 +23,9 @@
 
   {{/each}}
 </div>
-<div>
-  Appetizer!!
-  {{#each Appetizers}}
-  <div>{{item}} costs {{price}} and takes {{cook_time}} to cook</div>
-  {{/each}}
-</div>
-<br><br>
-<div>
-  Entree!!
-  {{#each Entres}}
-  <div>{{item}} costs {{price}} and takes {{cook_time}} to cook</div>
-  {{/each}}
-</div>
-<br><br>
-<div>
-  Desserts!
-  {{#each Deserts}}
-  <div>{{item}} costs {{price}} and takes {{cook_time}} to cook</div>
-  {{/each}}
-</div>
 
 <br><br>
-<button type="button" class="btn btn-info btn-lg tableBtn" id="ViewMenu" data-toggle="modal" isOccupy="0"
+<button type="button" class="btn btn-info btn-lg" id="ViewMenu" data-toggle="modal" isOccupy="0"
   data-target="#View-Menu">Menu</button>
 
 
@@ -153,27 +133,26 @@
           <div class=" offset-md-3 col-md-7">
             <form>
               <h4 class="text-danger"><strong>Appetizer</strong></h4>
-
-              {{ Appetizer_dish_1 }}: <input type="text" size="4" id="AppOne"><br>
-              {{ Appetizer_dish_2 }}: <input type="text" size="4" id="AppTwo"><br>
-              {{ Appetizer_dish_3 }}: <input type="text" size="4" id="AppThree">
+              {{#each Appetizers}}
+              <li>{{ item }}: <input type="text" size="4" id=""></li>
+              {{/each}}
 
               <br><br>
 
               <h4 class="text-danger"><strong>Entre'</strong></h4>
 
-              {{ Entre_dish_1 }}: <input type="text" size="4" id="EntOne"><br>
-              {{ Entre_dish_2 }}: <input type="text" size="4" id="EntTwo"><br>
-              {{ Entre_dish_3 }}: <input type="text" size="4" id="EntThree">
-
+              {{#each Entres}}
+              <li>{{ item }}: <input type="text" size="4" id=""></li>
+              {{/each}}
               <br><br>
 
               <h4 class="text-danger"><strong>Desert</strong></h4>
 
-              {{ Desert_dish_1 }}: <input type="text" size="4" id="DesOne"><br>
-              {{ Desert_dish_1 }}: <input type="text" size="4" id="DesTwo"><br>
+              {{#each Deserts}}
+              <li>{{ item }}: <input type="text" size="4" id=""></li>
+              {{/each}}
               <br><br>
-              <button type="button" class="btn btn-default" data-dismiss="modal" id="submitBtn">Finish Order &
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="submitOrderBtn">Finish Order &
                 Submit</button>
             </form>
 
@@ -200,11 +179,11 @@
 
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <h4 class="text-danger"><strong>Appetizer</strong></h4>
             <ul>
               {{#each Appetizers}}
-              <li>{{ item }}, Price: {{ price }},Cook Time: {{ Cook_time }}</li>
+              <li>{{ item }}, Price: {{ price }},Cook Time: {{ cook_time }}</li>
               {{/each}}
             </ul>
 
@@ -212,7 +191,7 @@
             <h4 class="text-danger"><strong>Entre'</strong></h4>
             <ul>
               {{#each Entres}}
-              <li>{{ item }}, Price: {{ price }},Cook Time: {{ Cook_time }}</li>
+              <li>{{ item }}, Price: {{ price }},Cook Time: {{ cook_time }}</li>
               {{/each}}
             </ul>
 
@@ -220,7 +199,7 @@
             <h4 class="text-danger"><strong>Desert</strong></h4>
             <ul>
               {{#each Deserts}}
-              <li>{{ item }}, Price: {{ price }},Cook Time: {{ Cook_time }}</li>
+              <li>{{ item }}, Price: {{ price }},Cook Time: {{ cook_time }}</li>
               {{/each}}
             </ul>
             <br>
@@ -270,7 +249,7 @@
           Price: <input type="text" size="4" id="AddPrice"><br><br>
           Cook Time: <input type="text" size="10" id="AddCookTime" placeholder="minutes">
           <br><br>
-          <button type="button" class="btn btn-default" id="test">Submit</button>
+          <button type="button" class="btn btn-default" id="submitAddDish">Submit</button>
         </form>
       </div>
     </div>
@@ -293,19 +272,18 @@
         <form id="formTest2">
           What Dish you want to delete? <br><br>
           <select id="delete-dish">
-            <option value="null">Appetizer</option>
-            <option id="1">testdish</option>
-            <option value={{ Appetizer_dish_2 }}>{{ Appetizer_dish_2 }}</option>
-            <option value={{ Appetizer_dish_3 }}>{{ Appetizer_dish_3 }}</option>
-
-            <option value="null">Entre'</option>
-            <option value={{ Entre_dish_1 }}>{{ Entre_dish_1 }}</option>
-            <option value={{ Entre_dish_2 }}>{{ Entre_dish_2 }}</option>
-
-            <option value="null">Desert</option>
-            <option value={{ Desert_dish_1 }}>{{ Desert_dish_1 }}</option>
-            <option value={{ Desert_dish_2 }}>{{ Desert_dish_2 }}</option>
-
+            <option value="null">---Appetizer---</option>
+            {{#each Appetizers}}
+            <option id={{id}}>{{ item }}</option>
+            {{/each}}
+            <option value="null">---Entre'---</option>
+            {{#each Entres}}
+            <option id={{id}}>{{ item }}</option>
+            {{/each}}
+            <option value="null">---Desert---</option>
+            {{#each Deserts}}
+            <option id={{id}}>{{ item }}</option>
+            {{/each}}
           </select><br><br>
           <button type="button" class="btn btn-default" id="submitDelete">Submit</button>
         </form>
