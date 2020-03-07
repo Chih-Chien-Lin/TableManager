@@ -16,8 +16,38 @@ module.exports = function(app) {
       }
       console.table(newobject)
       res.render("index", newobject)
-    });
-  });
+
+    })
+  })
+// route to get all the menu
+  app.get("/order/:status",function(req,res){
+    db.Menu.findAll({}).then(function(dbmenu){
+      var appe = [];
+      var entr = [];
+      var dese = [];
+      dbmenu.forEach(element => {
+        let temp = element.dataValues;
+        if (temp.category === "Appetizer"){
+          appe.push(temp)
+        }else if(temp.category === "Entre"){
+          entr.push(temp)
+        }else{
+          dese.push(temp)
+        }
+      });
+      var menudis = {
+        Appesizers: appe,
+        Entres: entr,
+        Deserts: dese
+      }
+      console.log("stored appe: ",appe)
+      console.log("stored entr: ",entr)
+      console.log("stored dese: ",dese)
+      res.render("index", menudis)
+    })
+  })
+
+
 
   app.post("/tables", function(req, res) {
     db.Diningroom.create(req.body).then(function(dbDiningroom) {
@@ -35,7 +65,7 @@ module.exports = function(app) {
     console.log("start delete")
     db.Menu.destroy({
       where: {
-        item: res.params.id
+        id: req.params.id
       }
     }).then(function(dbMenu) {
       res.json(dbMenu);
@@ -53,7 +83,7 @@ module.exports = function(app) {
 
   app.post("/check-in", function(req, res) {
     db.TableHistory.create(req.body);
-    res.json({ customerId: results.insertId}) //this should make a "tableId" where the id of the table history is used sort of like an order number so in the handlebar we need an {{ id }} which is to identify the total amount of tables available in the restuarant and {{ tableId }} is the current party occupying the table, like an order order. We will set a data-id = {{ id }} and a data-tableId = {{ tableId }} in the handlebar we can use the value of data-tableId to pull from the tablehistory.
+    // res.json({ customerId: results.insertId}) //this should make a "tableId" where the id of the table history is used sort of like an order number so in the handlebar we need an {{ id }} which is to identify the total amount of tables available in the restuarant and {{ tableId }} is the current party occupying the table, like an order order. We will set a data-id = {{ id }} and a data-tableId = {{ tableId }} in the handlebar we can use the value of data-tableId to pull from the tablehistory.
   });//changed the name from "tableId" to "customerId" too many tables being thrown or flipped
 
 
