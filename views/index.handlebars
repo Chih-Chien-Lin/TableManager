@@ -22,6 +22,27 @@
 
   {{/each}}
 </div>
+<div>
+  Appetizer!!
+  {{#each Appetizers}}
+  <div>{{Item}} costs {{price}} and takes {{cook_time}} to cook</div>
+  {{/each}}
+</div>
+<br><br>
+<div>
+  Entree!!
+  {{#each Entres}}
+  <div>{{Item}} costs {{price}} and takes {{cook_time}} to cook</div>
+  {{/each}}
+</div>
+<br><br>
+<div>
+  Desserts!
+  {{#each Deserts}}
+  <div>{{Item}} costs {{price}} and takes {{cook_time}} to cook</div>
+  {{/each}}
+</div>
+
 <br><br>
 <button type="button" class="btn btn-info btn-lg tableBtn" id="ViewMenu" data-toggle="modal" isOccupy="0"
   data-target="#View-Menu">Menu</button>

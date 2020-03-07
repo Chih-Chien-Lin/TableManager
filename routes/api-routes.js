@@ -4,48 +4,87 @@ module.exports = function(app) {
   app.get("/", function(req, res){
     db.Diningroom.findAll({
     }).then(function(dbtables){
-      console.log("The get works")
-      console.log(dbtables)
-      let allTables = []
-      dbtables.forEach(element => {
-        let newData = element.dataValues
-        allTables.push(newData)
-      });
-      var newobject = {
-        tables: allTables
-      }
-      console.table(newobject)
-      res.render("index", newobject)
-
-    })
-  })
-// route to get all the menu
-  app.get("/order/:status",function(req,res){
-    db.Menu.findAll({}).then(function(dbmenu){
-      var appe = [];
-      var entr = [];
-      var dese = [];
-      dbmenu.forEach(element => {
-        let temp = element.dataValues;
-        if (temp.category === "Appetizer"){
-          appe.push(temp)
-        }else if(temp.category === "Entre"){
-          entr.push(temp)
-        }else{
-          dese.push(temp)
+      db.Menu.findAll({        
+      }).then(function(dbmenu){
+        let allTables = []
+        dbtables.forEach(element => {
+          let newData = element.dataValues
+          allTables.push(newData)
+        });
+        var appe = [];
+        var entr = [];
+        var dese = [];
+        dbmenu.forEach(element => {
+          let temp = element.dataValues;
+          if (temp.category === "Appetizer"){
+            appe.push(temp)
+          }else if(temp.category === "Entre"){
+            entr.push(temp)
+          }else{
+            dese.push(temp)
+          }
+        });
+        var newobject = {
+          tables: allTables,
+          Appetizers: appe,
+          Entres: entr,
+          Deserts: dese
         }
-      });
-      var menudis = {
-        Appesizers: appe,
-        Entres: entr,
-        Deserts: dese
-      }
-      console.log("stored appe: ",appe)
-      console.log("stored entr: ",entr)
-      console.log("stored dese: ",dese)
-      res.render("index", menudis)
+        // // console.log("stored appe: ",appRend)
+        // console.log("stored entr: ",entreeRend)
+        // console.log("stored dese: ",dessertRend)
+        console.log(newobject)
+        return res.render("index", newobject)
+      })
     })
   })
+
+
+  // app.get("/", function(req, res){
+  //   db.Diningroom.findAll({
+  //   }).then(function(dbtables){
+  //     console.log("The get works")
+  //     console.log(dbtables)
+  //     let allTables = []
+  //     dbtables.forEach(element => {
+  //       let newData = element.dataValues
+  //       allTables.push(newData)
+  //     });
+  //     var newobject = {
+  //       tables: allTables
+  //     }
+  //     console.table(newobject)
+  //     res.render("index", newobject)
+
+  //   })
+  // })
+// route to get all the menu
+  // app.get("/order/:status",function(req,res){
+  //   db.Menu.findAll({}).then(function(dbmenu){
+  //     var appe = [];
+  //     var entr = [];
+  //     var dese = [];
+  //     dbmenu.forEach(element => {
+  //       let temp = element.dataValues;
+  //       if (temp.category === "Appetizer"){
+  //         appe.push(temp)
+  //       }else if(temp.category === "Entre"){
+  //         entr.push(temp)
+  //       }else{
+  //         dese.push(temp)
+  //       }
+  //     });
+  //     var menudis = {
+  //       Appesizers: appe,
+  //       Entres: entr,
+  //       Deserts: dese
+  //     }
+  //     console.log("stored appe: ",appe)
+  //     console.log("stored entr: ",entr)
+  //     console.log("stored dese: ",dese)
+  //     res.render("index", menudis)
+  //   })
+  // })
 
 
 
