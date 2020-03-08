@@ -1,4 +1,7 @@
 $(function () {
+    let appCount = document.querySelectorAll(".app-order")
+    let entreeCount = document.querySelectorAll(".entree-order")
+    let dessertCount = document.querySelectorAll(".dessert-order")
 
     $("#create-table").on("click", function () {
         let count = 0;
@@ -153,7 +156,21 @@ $(function () {
     //*NEW* OFF THE AIRPLANE! this is a easier function since we can link via foreign key. 
     $("#submitOrderBtn").on("click", function (event) {
         event.preventDefault();
-        console.log("This is the tableID: " + selectedTable);
+        console.log("This is how many app we have" + appCount.length)
+        console.log("This is how many entrees we have" + entreeCount.length)
+        console.log("This is how many desserts we have" + dessertCount.length)
+        let order = []
+        let count = []
+        appCount.forEach(function(appetizer){
+            if(appetizer.value != "" || appetizer.value != 0){
+                let quantity = appetizer.value
+                let id = appetizer.dataset.menu
+                order.push(id)
+                count.push(quantity)
+            }            
+        })
+        console.log(order)
+        console.log(count)
         var newTable = {
             // start_at: moment.format("LTS"), //this sets the start time
             table_color: "danger",
