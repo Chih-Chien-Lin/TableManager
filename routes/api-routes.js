@@ -47,9 +47,10 @@ module.exports = function(app) {
   });
 
   app.post("/menu",function(req,res){
-    db.Menu.create(req.body);
-    // console.log(res);
-    // res.json({ Menu })
+    db.Menu.create(req.body).then(function(dbmenu){
+      res.json(dbmenu)
+    })
+
   });
   
   app.delete("/menu/delete/:id", function(req, res) {
