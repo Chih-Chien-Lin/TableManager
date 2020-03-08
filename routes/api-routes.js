@@ -43,18 +43,18 @@ module.exports = function(app) {
 
   //3/8 new get that I was trying to retrieve the tablehistory
   app.get("/api/order/:id", function(req, res){
-    console.table(req)
+    console.log("find the table info")
     db.TableHistory.findOne({
       where: {
         DiningroomId : req.params.id
       }
     }).then(function(tableHistory){
-      if(!tableHistory){
-        return;
-      }
-      else{
+      // if(!tableHistory){
+      //   return;
+      // }
+      // else{
         res.json(tableHistory);
-      }
+      // }
     });
   });
 

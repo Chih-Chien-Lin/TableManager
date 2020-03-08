@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: 'White',
     },
     order: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     order_quantity: {
       type: DataTypes.STRING
