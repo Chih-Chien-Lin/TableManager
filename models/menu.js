@@ -20,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
   let date = new Date();
   Menu.sync().then(() => {
     Menu.create({
-      item: 'wagyu meatballs',
+      item: 'wagyu_meatballs',
       category: 'Appetizer',
       price: '23.99',
       cook_time: '10',
@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
       updatedAt: date
     });
     Menu.create({
-      item: 'pan seared scallops',
+      item: 'pan_seared_scallops',
       category: 'Appetizer',
       price: '24.99',
       cook_time: '10',
@@ -36,7 +36,7 @@ module.exports = function (sequelize, DataTypes) {
       updatedAt: date
     });
     Menu.create({
-      item: 'Lobster risotto',
+      item: 'Lobster_risotto',
       category: 'Appetizer',
       price: '25.99',
       cook_time: '10',
@@ -44,7 +44,7 @@ module.exports = function (sequelize, DataTypes) {
       updatedAt: date
     });
     Menu.create({
-      item: 'beef wellington',
+      item: 'beef_wellington',
       category: 'Entre',
       price: '49.99',
       cook_time: '10',
@@ -52,7 +52,7 @@ module.exports = function (sequelize, DataTypes) {
       updatedAt: date
     });
     Menu.create({
-      item: 'roasted rack of lamb',
+      item: 'roasted_rack_of_lamb',
       category: 'Entre',
       price: '39.99',
       cook_time: '10',
@@ -60,7 +60,7 @@ module.exports = function (sequelize, DataTypes) {
       updatedAt: date
     });
     Menu.create({
-      item: 'crispy skin salmon',
+      item: 'crispy_skin_salmon',
       category: 'Entre',
       price: '37.99',
       cook_time: '10',
@@ -68,7 +68,7 @@ module.exports = function (sequelize, DataTypes) {
       updatedAt: date
     });
     Menu.create({
-      item: 'sticky toffee pudding',
+      item: 'sticky_toffee_pudding',
       category: 'desert',
       price: '19.99',
       cook_time: '10',
@@ -76,7 +76,7 @@ module.exports = function (sequelize, DataTypes) {
       updatedAt: date
     });
     Menu.create({
-      item: 'cranberry souffle',
+      item: 'cranberry_souffle',
       category: 'desert',
       price: '17.99',
       cook_time: '10',

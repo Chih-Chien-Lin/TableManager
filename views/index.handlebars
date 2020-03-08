@@ -122,7 +122,7 @@
             <form>
               <h4 class="text-danger"><strong>Appetizer</strong></h4>
               {{#each Appetizers}}
-              <li>{{ item }}: <input class="app-order" type="text" size="4" data-menu={{id}}></li>
+              <li>{{ item }}: <input class="app-order" type="text" size="4" data-menu={{item}}></li>
               {{/each}}
 
               <br><br>
@@ -130,14 +130,14 @@
               <h4 class="text-danger"><strong>Entre'</strong></h4>
 
               {{#each Entres}}
-              <li>{{ item }}: <input class="entree-order" type="text" size="4" data-menu={{id}}></li>
+              <li>{{ item }}: <input class="entree-order" type="text" size="4" data-menu={{item}}></li>
               {{/each}}
               <br><br>
 
               <h4 class="text-danger"><strong>Desert</strong></h4>
 
               {{#each Deserts}}
-              <li>{{ item }}: <input class="dessert-order" type="text" size="4" data-menu={{id}}></li>
+              <li>{{ item }}: <input class="dessert-order" type="text" size="4" data-menu={{item}}></li>
               {{/each}}
               <br><br>
               <button type="button" class="btn btn-default" data-dismiss="modal" id="submitOrderBtn">Finish Order &
