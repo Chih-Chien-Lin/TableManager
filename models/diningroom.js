@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Diningroom = sequelize.define("Diningroom", {
     seats: {
       type: DataTypes.INTEGER,
-      allowNull: true, // Need to change this later when we allow for seat
+      allowNull: false, // Need to change this later when we allow for seat
     },
     // availability: {
     //   type: DataTypes.BOOLEAN,

@@ -214,60 +214,6 @@ $(function () {
         })
     })
 
-    // the class check-in is the appetizer button, this is to guarentee the customer has placed an order and can generate a table id, otherwise if a customer walks out you don't have a "dead" table history.
-    // $(".check-in").on("submit",function(event){ 
-    //     event.preventDefault();
-    //     var id = $(this).data("id");
-    //     //this creates a JSON which will turn the table avaibility false and the id is used to tell it which table is now not availible
-    //     var availability = { 
-    //         availability: false,
-    //         id: id
-    //     };
-    //     $.ajax("/availability", {
-    //         type: "PUT",
-    //         data: availability
-    //     }).then(function(res) {
-    //         //time will grab the time from moment and change the table_color to green, so when it renders on a reload it'll be green.
-    //         var time = { 
-    //             start_at: moment.format('LTS'),
-    //             table_color: "blue"
-    //         }
-    //         $.ajax("/check-in", {
-    //             type: 'POST',
-    //             data: time
-    //         }).then(function(){
-    //             location.reload()
-    //         })
-    //     });
-    // })
-
-    // $(".check-in").on("submit", function(event) {  <--- same function as above but reversed the order
-    //     event.preventDefault();
-    //     var id = $(this).data("id");
-    //     var time = {
-    //         start_at: moment.format('LTS'),
-    //         table_color: "green"
-    //     }
-    //     $.ajax("/check-in", {
-    //         type: 'POST',
-    //         data: time
-    //     }).then(function(response) {
-    //         if (response !== null) {
-    //             var availability = {
-    //                 availability: false,
-    //                 id: id
-    //             };
-
-    //             $.ajax("/availability", {
-    //                 type: "PUT",
-    //                 data: availability
-    //             }).then(function(res) {
-    //                 location.reload();
-    //             });
-    //         }
-    //     });
-    // });
-
     $(".appetizer").on("click", function (event) {
         alert("hello");
         // event.preventDefault();
@@ -332,6 +278,16 @@ $(function () {
         }).then(function (dbClear) {
             // res.render("Index", dbClear) <-- think render goes in the route folder but either way I think it automatically renders when the page reloads
             location.reload()
+        })
+    })
+
+    //3/8/20 new function that on click will get the id from the button and retrieve the tablehistory
+    $(".tableBtn").on("click", function(){
+        let id = $(this).data("id")
+        $.ajax("/api/order/" + id, {
+            type: "GET"
+        }).then(function(data){
+            console.log(data)
         })
     })
 
