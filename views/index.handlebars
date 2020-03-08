@@ -1,34 +1,34 @@
-{{!-- <div class="sidenav">
-  <a href="#">Back</a> --}}
-<div class="side-button text-center"><u>Create Table:</u>
-  choose # of Seats
-  <select id="table-count">
-    <option value=2>2</option>
-    <option value=4>4</option>
-    <option value=6>6</option>
-  </select>
-  <button class="btn btn-primary rounded-pill" id="create-table">Build</button>
-</div>
-{{!-- <a href="#">orders</a>
-  <a href="#">payment</a>
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#View-Menu">Menu</button>
-</div> --}}
+<ul class="nav check bg-primary">
+  <li class="nav-item text-center nav-header-main m-5"><u>Table Manager</u></li>
+  <li class="nav-item text-center m-5">
+  <div class="text-center nav-header-sub m-1">Create Table</div>
+      <select id="table-count">
+        <option value=2>2 Seats</option>
+        <option value=4>4 Seats</option>
+        <option value=6>6 Seats</option>
+      </select>
+    <button class="btn btn-info rounded-pill m-1" id="create-table">Build</button>
+  </li>
+  <li class="nav-item check m-5">
+      <button type="button" class="btn btn-info btn-lg nav-button-custom" id="ViewMenu" data-toggle="modal" isOccupy="0"
+      data-target="#View-Menu"> View Menu</button>
+  </li>
+</ul>
 
-
-<div>
+<div class="all-tables">
   {{#each tables}}
 
     <div class="table-container">
         <div class="container m-5">
             <div class="row">
                 <div class="col-sm-5"></div>
-                <div class="col-sm-2 check seat rounded"></div>
+                <div class="col-sm-2 check-table seat rounded"></div>
                 <div class="col-sm-5"></div>
             </div>
             <br>
             <div class="row">
                 <div class="col-sm-2"></div>
-                <div class="col-sm-8 check table table-color rounded"> 
+                <div class="col-sm-8 check table check-table rounded"> 
                     <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal" isOccupy="0"
                     data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
                 </div>
@@ -37,7 +37,7 @@
             <br>
             <div class="row">
                 <div class="col-sm-5"></div>
-                <div class="col-sm-2 check seat rounded"></div>
+                <div class="col-sm-2 check-table seat rounded"></div>
                 <div class="col-sm-5"></div>
             </div>
         </div>
@@ -45,40 +45,6 @@
 
   {{/each}}
 </div>
-
-<br><br>
-<button type="button" class="btn btn-info btn-lg" id="ViewMenu" data-toggle="modal" isOccupy="0"
-  data-target="#View-Menu">Menu</button>
-
-
-{{!-- Bustons for tables --}}
-{{!-- <div class="col-md-9">
-      <div class="row">
-        <div class="col-12 col-md-2 mt-4">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <button type="button" class="btn btn-info btn-lg tableBtn" id="1" data-toggle="modal" isOccupy="0"
-            data-target="#Not-Occupied">table-1</button>
-        </div>
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-info btn-lg tableBtn" id="2" data-toggle="modal" isOccupy="0"
-            data-target="#Not-Occupied">table-2</button>
-        </div>
-        <div class="col-md-3">
-          <button type="button" class="btn btn-info btn-lg tableBtn" id="3" data-toggle="modal" isOccupy="0"
-            data-target="#Not-Occupied">table-3</button>
-        </div>
-        <div class="col-md-3">
-          <button type="button" class="btn btn-info btn-lg tableBtn" id="4" data-toggle="modal" isOccupy="0"
-            data-target="#Not-Occupied">table-4</button>
-        </div>
-      </div>
-
-    </div>--}}
-</div>
-
 
 {{!-- here is the setting of modal --}}
 
