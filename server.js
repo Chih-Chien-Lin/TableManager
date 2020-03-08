@@ -15,8 +15,7 @@ app.set("view engine", "handlebars");
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes")(app);
 
-// db.sequelize.sync({ force: true }).then(function() { //change to 'force: false' when we're done or we can't seed later
-db.sequelize.sync().then(function () { //change to 'force: false' when we're done or we can't seed later
+db.sequelize.sync({ force: true }).then(function () { //change to 'force: false' when we're done or we can't seed later
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
