@@ -156,50 +156,52 @@ $(function () {
     //*NEW* OFF THE AIRPLANE! this is a easier function since we can link via foreign key. 
     $("#submitOrderBtn").on("click", function (event) {
         event.preventDefault();
-        console.log("This is how many app we have" + appCount.length)
-        console.log("This is how many entrees we have" + entreeCount.length)
-        console.log("This is how many desserts we have" + dessertCount.length)
-        let order = []
-        let count = []
+        console.log("This is how many app we have" + appCount.length);
+        console.log("This is how many entrees we have" + entreeCount.length);
+        console.log("This is how many desserts we have" + dessertCount.length);
+        let order = [];
+        let count = [];
         appCount.forEach(function(appetizer){
             if(appetizer.value != "" || appetizer.value != 0){
-                let appQuantity = appetizer.value
-                let appId = appetizer.dataset.menu
+                let appQuantity = appetizer.value;
+                let appId = appetizer.dataset.menu;
                 // count =+ appQuantity
                 // order =+ appId
-                order.push(appId)
-                count.push(appQuantity)
-            }            
-        })
+                order.push(appId);
+                count.push(appQuantity);
+            };            
+        });
         entreeCount.forEach(function(entree){
             if(entree.value != "" || entree.value != 0){
-                let entreeQuantity = entree.value
-                let entreeId = entree.dataset.menu
+                let entreeQuantity = entree.value;
+                let entreeId = entree.dataset.menu;
                 // count =+ entreeQuantity
                 // order =+ entreeId
-                order.push(entreeId)
-                count.push(entreeQuantity)
+                order.push(entreeId);
+                count.push(entreeQuantity);
             }       
         })
         dessertCount.forEach(function(dessert){
             if(dessert.value != "" || dessert.value != 0){
-                let dessertQuantity = dessert.value
-                let dessertId = dessert.dataset.menu
+                let dessertQuantity = dessert.value;
+                let dessertId = dessert.dataset.menu;
                 // order =+ dessertId
                 // count =+ dessertQuantity
-                order.push(dessertId)
-                count.push(dessertQuantity)
+                order.push(dessertId);
+                count.push(dessertQuantity);
             }       
         })
-        console.log(order)
-        console.log(count)
+        console.log(order);
+        console.log(count);
+        let orderString = order.toString();
+        let countString = count.toString();
         var newTable = {
             // start_at: moment.format("LTS"), //this sets the start time
             table_color: "danger",
             //   availability: false, <-- left this commented out for now since we dont need availability, but it's here if we do
             DiningroomId: selectedTable, //we will set the foreign key that sequelize generated for us to the table id, so now "tablehistory" and "diningroom" are linked
-            // order: order,
-            // order_quantity: count
+            order: orderString,
+            order_quantity: countString
         }
         changeToOccupied();
         $.ajax("/check-in", {
