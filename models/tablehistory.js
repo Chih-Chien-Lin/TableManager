@@ -10,6 +10,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       defaultValue: 'White',
     },
+    order: {
+      type: DataTypes.STRING
+    },
+    order_quantity: {
+      type: DataTypes.STRING
+    }
     // entree_time: {
     //   type: DataTypes.BOOLEAN,
     //   defaultValue: '0',
