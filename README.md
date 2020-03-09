@@ -43,6 +43,9 @@ Future developments will rework the display with React.js, and include additiona
 3. [Kenny Lam](https://github.com/Thewa55)
 4. [Kimia Darden](https://github.com/kimiadarden)
 
+> Additional use of: 
+> 1. CSSWAND
+
 ## License 
 
 N/A

@@ -4,93 +4,28 @@ $(function () {
     let dessertCount = document.querySelectorAll(".dessert-order")
 
     $("#create-table").on("click", function () {
-        let count = 0;
         var totalSeats = $("#table-count").val();
         totalSeats = parseInt(totalSeats);
-        let seats = {
-            seats: totalSeats
+        let seats;
+
+        if (totalSeats == 2) {
+                seats = {
+                seats: totalSeats,
+                twoSeat: true
+            }
+        } else if (totalSeats == 4) {
+                seats = {
+                seats: totalSeats,
+                fourSeat: true
+            }
+        } else if (totalSeats == 6) {
+                seats = {
+                seats: totalSeats,
+                sixSeat: true
+            }
         }
+
         console.log(seats);
-
-        let twoSeat = `<div class="table-container check">
-        <div class="container m-5 text-center">
-            <div class="row">
-                <div class="col-sm-5"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-5"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8 check table table-color"></div>
-                <div class="col-sm-2"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-5"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-5"></div>
-            </div>
-        </div>
-        </div>`;
-
-        let fourSeat = `<div class="table-container check">
-        <div class="container m-5">
-            <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-3"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8 check table table-color"></div>
-                <div class="col-sm-2"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-3"></div>
-            </div>
-        </div>
-        </div>`;
-
-        let sixSeat = `<div class="table-container check">
-        <div class="container m-5">
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8 check table table-color"></div>
-                <div class="col-sm-2"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2 check seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-            </div>
-        </div>
-        </div>`;
-
-
 
         $.ajax("/tables", {
             type: "POST",
