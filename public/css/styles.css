@@ -1,6 +1,13 @@
+.color-slot {
+  height: 20px;
+  width: 200px;
+  border: 1px solid black;
+  font-weight: bolder;
+}
+
 #time {
   font-size: 20px;
-  padding-top: 1%;
+  padding-top: 1.5%;
   color: white;
   text-decoration: underline;
   font-family: 'Viaoda Libre', cursive;
