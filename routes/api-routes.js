@@ -58,6 +58,7 @@ module.exports = function(app) {
     });
   });
 
+
   app.post("/tables", function(req, res) {
     db.Diningroom.create(req.body).then(function(dbDiningroom) {
         res.json(dbDiningroom);
@@ -98,8 +99,9 @@ module.exports = function(app) {
 
 
   //this is used to change the availbility of the table when you click on appetizer or clear
-  app.put("/availbility", function(req, res) { 
-    db.Diningroom.update(req.body.availability, {
+  app.put("/availability", function(req, res) { 
+    console.log("This is the req: " + req.body)
+    db.Diningroom.update(req.body, {
         where: {
           id: req.body.id
         }

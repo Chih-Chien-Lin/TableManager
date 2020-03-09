@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
+    availability: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     },
     {
       freezeTableName: true
