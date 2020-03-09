@@ -18,6 +18,15 @@ body {
   height: 40%;
   width: 40%;
   font-family: 'Permanent Marker', cursive;
+  padding: 0 15px;
+  cursor: pointer;
+  height:32px;
+  font-size:14px;
+  transition: all 0.2s ease-in-out;
+}
+
+#create-table:hover {
+  border-radius: 50%;
 }
 
 .nav-button-custom {

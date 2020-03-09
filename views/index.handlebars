@@ -7,7 +7,7 @@
         <option value=4>4 Seats</option>
         <option value=6>6 Seats</option>
       </select>
-    <button class="btn btn-info rounded-pill m-1" id="create-table">Build</button>
+    <button class="btn btn-info rounded-pill m-1 text-center p-1" id="create-table">Build</button>
   </li>
   <li class="nav-item check m-5">
       <button type="button" class="btn btn-info btn-lg nav-button-custom" id="ViewMenu" data-toggle="modal" isOccupy="0"
@@ -17,32 +17,96 @@
 
 <div class="all-tables">
   {{#each tables}}
-
-    <div class="table-container">
+    {{#if twoSeat}}
+      <div class="table-container">
+          <div class="container m-5">
+              <div class="row">
+                  <div class="col-sm-5"></div>
+                  <div class="col-sm-2 check-table seat rounded"></div>
+                  <div class="col-sm-5"></div>
+              </div>
+              <br>
+              <div class="row">
+                  <div class="col-sm-2"></div>
+                  <div class="col-sm-8 check table check-table rounded"> 
+                      <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal" isOccupy="0"
+                      data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
+                  </div>
+                  <div class="col-sm-2"></div>
+              </div>
+              <br>
+              <div class="row">
+                  <div class="col-sm-5"></div>
+                  <div class="col-sm-2 check-table seat rounded"></div>
+                  <div class="col-sm-5"></div>
+              </div>
+          </div>
+      </div>
+    {{/if}}
+    {{#if fourSeat}}
+      <div class="table-container check">
         <div class="container m-5">
             <div class="row">
-                <div class="col-sm-5"></div>
-                <div class="col-sm-2 check-table seat rounded"></div>
-                <div class="col-sm-5"></div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-3"></div>
             </div>
             <br>
             <div class="row">
                 <div class="col-sm-2"></div>
-                <div class="col-sm-8 check table check-table rounded"> 
-                    <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal" isOccupy="0"
-                    data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
+                <div class="col-sm-8 check-table table table-color">
+                  <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal" isOccupy="0"
+                  data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
                 </div>
                 <div class="col-sm-2"></div>
             </div>
             <br>
             <div class="row">
-                <div class="col-sm-5"></div>
-                <div class="col-sm-2 check-table seat rounded"></div>
-                <div class="col-sm-5"></div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-3"></div>
             </div>
         </div>
-    </div>
-
+      </div>
+    {{/if}}
+    {{#if sixSeat}}
+      <div class="table-container check">
+        <div class="container m-5">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8 check-table table table-color">
+                  <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal" isOccupy="0"
+                  data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 check-table seat rounded-pill"></div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+      </div>
+    {{/if}}
   {{/each}}
 </div>
 

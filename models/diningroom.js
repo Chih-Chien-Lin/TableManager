@@ -4,9 +4,18 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false, // Need to change this later when we allow for seat
     },
-    // availability: {
-    //   type: DataTypes.BOOLEAN,
-    //   defaultValue: true},
+    twoSeat: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    fourSeat: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    sixSeat: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     },
     {
       freezeTableName: true
