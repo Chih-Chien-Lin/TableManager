@@ -1,7 +1,44 @@
 $(function () {
-    let appCount = document.querySelectorAll(".app-order")
-    let entreeCount = document.querySelectorAll(".entree-order")
-    let dessertCount = document.querySelectorAll(".dessert-order")
+    let appCount = document.querySelectorAll(".app-order");
+    let entreeCount = document.querySelectorAll(".entree-order");
+    let dessertCount = document.querySelectorAll(".dessert-order");
+
+    function getTime() {         
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://world-clock.p.rapidapi.com/json/est/now",
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "world-clock.p.rapidapi.com",
+                "x-rapidapi-key": "c7f1f5fdffmshcee1368c768e093p12f85bjsn6265db3f7717"
+            }
+        }
+
+        $.ajax(settings).done(function (response) {
+            let weekday = response.dayOfTheWeek;
+            let motivTxt;
+
+            if (weekday == "Monday") {
+                motivTxt = "The week has just started. Get hustling!";
+            } else if (weekday == "Tuesday") {
+                motivTxt = "Hey, at least it's not Monday!";
+            } else if (weekday == "Wednesday") {
+                motivTxt = "Today, you get over the hump!";
+            } else if (weekday == "Thursday") {
+                motivTxt = "We're almost to the weekend!";
+            } else if (weekday = "Friday") {
+                motivTxt = "Woohoo! We made it!";
+            } else {
+                motivTxt = "It's the weekend. Go home and rest!";
+            }
+
+            $("#time").text(`It's currently ${weekday}. ${motivTxt}`);
+        });
+
+    }
+
+    getTime();
 
     $("#create-table").on("click", function () {
         var totalSeats = $("#table-count").val();

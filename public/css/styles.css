@@ -1,3 +1,11 @@
+#time {
+  font-size: 20px;
+  padding-top: 1%;
+  color: white;
+  text-decoration: underline;
+  font-family: 'Viaoda Libre', cursive;
+}
+
 body {
   background-color: lightgray;
 }
