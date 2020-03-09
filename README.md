@@ -44,7 +44,8 @@ Future developments will rework the display with React.js, and include additiona
 4. [Kimia Darden](https://github.com/kimiadarden)
 
 > Additional use of: 
-> 1. CSSWAND
+> 1. [CSSWAND](https://www.csswand.dev/)
+> 2. [World Clock API](https://rapidapi.com/theapiguy/api/world-clock?endpoint=apiendpoint_afd95fbf-b915-4ec9-99e7-13550b5ebe78)
 
 ## License 
 
