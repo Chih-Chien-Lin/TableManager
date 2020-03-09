@@ -130,22 +130,32 @@ $(function () {
         console.log(count);
         let orderString = order.toString();
         let countString = count.toString();
+        let thisTable = selectedTable;
         var newTable = {
             // start_at: moment.format("LTS"), //this sets the start time
             table_color: "danger",
             //   availability: false, <-- left this commented out for now since we dont need availability, but it's here if we do
             DiningroomId: selectedTable, //we will set the foreign key that sequelize generated for us to the table id, so now "tablehistory" and "diningroom" are linked
             order: orderString,
-            order_quantity: countString
+            order_quantity: countString,
         }
         changeToOccupied();
         $.ajax("/check-in", {
             type: "POST",
             data: newTable
         }).then(function (response) {
+            let tableAvail = {
+                availability: true,
+                id: thisTable
+            }
+            $.ajax("/availability", {
+                type: "PUT",
+                data: tableAvail
+            }).then(function (response){
             console.log(response)
-            console.log("New customer recieved!")
-            location.reload()
+             console.log("New customer recieved!")
+              location.reload()
+            })
         })
     })
 
