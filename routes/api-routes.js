@@ -31,14 +31,8 @@ module.exports = function(app) {
                     Entres: entr,
                     Deserts: dese
                   }
-          // Appetizers: appe,
-          // Entres: entr,
-          // Deserts: dese
         }
-        // // console.log("stored appe: ",appRend)
-        // console.log("stored entr: ",entreeRend)
-        // console.log("stored dese: ",dessertRend)
-        // console.log(newobject)
+
         return res.render("index", newobject)
       })
     })
@@ -53,12 +47,7 @@ module.exports = function(app) {
         DiningroomId : req.params.id
       }
     }).then(function(tableHistory){
-      // if(!tableHistory){
-      //   return;
-      // }
-      // else{
         res.json(tableHistory);
-      // }
     });
   });
 
@@ -98,53 +87,18 @@ module.exports = function(app) {
 
   app.post("/check-in", function(req, res) {
     db.TableHistory.create(req.body);
-    // res.json({ customerId: results.insertId}) //this should make a "tableId" where the id of the table history is used sort of like an order number so in the handlebar we need an {{ id }} which is to identify the total amount of tables available in the restuarant and {{ tableId }} is the current party occupying the table, like an order order. We will set a data-id = {{ id }} and a data-tableId = {{ tableId }} in the handlebar we can use the value of data-tableId to pull from the tablehistory.
   });//changed the name from "tableId" to "customerId" too many tables being thrown or flipped
 
 
   //this is used to change the availbility of the table when you click on appetizer or clear
   app.put("/availability", function(req, res) { 
-    // console.log("This is the req: " + req.body)
     db.Diningroom.update(req.body, {
         where: {
           id: req.body.id
         }
     }).then(function(dbDiningroom) {
-        // res.render("index", dbDiningroom); <--- I commented this out for now because I think app.post up top will repopulate the html and don't need to tell it to render
     });
   });
-
-  app.put("/appetizer", function(req,res){
-    db.Tablehistory.update(req.body.table_color,{
-      where: {
-        id: req.body.tableId
-      }
-    }).then(function(dbAppetizer){
-
-    });
-  });
-
-  //this entree and dessert (below) put will change the color stored in the TableHistory table and render it out to the handlebar
-  app.put("/entree", function(req,res){
-    db.Tablehistory.update(req.body.table_color,{
-      where: {
-        id: req.body.tableId
-      }
-    }).then(function(dbEntree){
-      // res.render("index", dbEntree); <--- I commented this out for now because I think app.post up top will repopulate the html and don't need to tell it to render
-    });
-  });
-
-  app.put("/dessert", function(req,res){
-    db.TableHistory.update(req.body.table_color,{
-      where: {
-        id: req.body.id
-      }
-    }).then(function(dbDessert){
-      // res.render("index", dbDessert); <--- I commented this out for now because I think app.post up top will repopulate the table and don't need to tell it to render
-    });
-  });
-
 
   //first time updating 2 things at once with 1 update, I am pretty sure it will work since all the updates are in one curly brackets.
   app.put("/clear", function(req,res){
@@ -157,7 +111,6 @@ module.exports = function(app) {
           customerId: req.body.customerId
         }
       }).then(function(){
-        // res.json({ tableId: ""}) // don't think we need this //hoping this will clear the table ID so when you click on the table, nothing will show up 
       })
   })
 };
