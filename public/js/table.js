@@ -80,7 +80,7 @@ $(function () {
         event.preventDefault();
         $.ajax({
             type: "GET",
-            url: "/order/" + status
+            url: "/api/order/" + status
         }).then(function (response) {
             console.log("Show ordering sys and order info!")
         })
@@ -293,6 +293,7 @@ $(function () {
         $('#' + selectedTable).addClass("btn-danger")
         selectedTable = "";
     }
+    //1234
     function changeToNotOccupied() {
         if (countApp == 3) {
             var appBtn = "#btn-app"+selectedTable;
