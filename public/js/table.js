@@ -82,9 +82,7 @@ $(function () {
             type: "GET",
             url: "/order/" + status
         }).then(function (response) {
-            // console.log(response)
             console.log("Show ordering sys and order info!")
-            // location.reload()
         })
     })
 
@@ -141,8 +139,7 @@ $(function () {
                 let appPrice = appetizer.dataset.price;
                 let newAppPrice = parseFloat(appPrice) * parseFloat(appQuantity)
                 newAppPrice = newAppPrice.toFixed(2);
-                // count =+ appQuantity
-                // order =+ appId
+
                 order.push(appId);
                 count.push(appQuantity);
                 price.push(newAppPrice);
@@ -156,8 +153,7 @@ $(function () {
                 let entreePrice = entree.dataset.price;
                 let newEntreePrice = parseFloat(entreePrice)*parseFloat(entreeQuantity);
                 newEntreePrice = newEntreePrice.toFixed(2);
-                // count =+ entreeQuantity
-                // order =+ entreeId
+
                 order.push(entreeId);
                 count.push(entreeQuantity);
                 price.push(newEntreePrice);
@@ -171,8 +167,7 @@ $(function () {
                 let dessertPrice = dessert.dataset.price;
                 let newDessertPrice = parseFloat(dessertPrice)*parseFloat(dessertQuantity);
                 newDessertPrice = newDessertPrice.toFixed(2)
-                // order =+ dessertId
-                // count =+ dessertQuantity
+
                 order.push(dessertId);
                 count.push(dessertQuantity);
                 price.push(newDessertPrice);
@@ -228,75 +223,6 @@ $(function () {
         })
     })
 
-    $(".appetizer").on("click", function (event) {
-        alert("hello");
-        // event.preventDefault();
-        // let tableId = $(this).data("customerId")
-        // let tableColor = {
-        //     table_color: "green",
-        //     id: tableId
-        // }
-        // $.ajax("/appetizer",{
-        //     type: "PUT",
-        //     data: tableColor
-        // }).then(function(){
-        //     console.log("Appetizer has been served!")
-        //     location.reload()
-        // })
-    })
-
-    $(".entree").on("submit", function (event) {
-        event.preventDefault();
-        let tableId = $(this).data("customerId")
-        let tableColor = {
-            table_color: "Yellow",
-            id: tableId
-        }
-        $.ajax("/entree", {
-            type: "PUT",
-            data: tableColor
-        }).then(function () {
-            console.log("Entree has been served!")
-            location.reload()
-        })
-    })
-
-    $(".dessert").on("submit", function (event) {
-        event.preventDefault();
-        let tableId = $(this).data("customerId")
-        let tableColor = {
-            table_color: "Red",
-            id: tableId
-        }
-        $.ajax("/entree", {
-            type: "PUT",
-            data: tableColor
-        }).then(function () {
-            console.log("Dessert has been served!")
-        })
-    })
-
-    // $(".clear").on("submit", function (event) {
-    //     event.preventDefault()
-    //     let customerId = $(this).data("customerId");
-    //     // let id = $(this).data("id");
-    //     // let availability = true;
-
-    //     let clearTable = {
-    //         table_color: white,
-    //         end_at: moment.format('LTS'),
-    //         customerId: customerId
-    //     };
-    //     $.ajax("/clear", {
-    //         type: "PUT",
-    //         data: clearTable
-    //     }).then(function (dbClear) {
-    //         // res.render("Index", dbClear) <-- think render goes in the route folder but either way I think it automatically renders when the page reloads
-    //         location.reload()
-    //     })
-
-    //     $(".")
-    // })
 
     //3/8/20 new function that on click will get the id from the button and retrieve the tablehistory
     $(".tableBtn").on("click", function () {
@@ -313,8 +239,6 @@ $(function () {
     $("#Appetizer").on("click", changeBtnApp);
     $("#Entre").on("click", changeBtnEnt);
     $("#Desert").on("click", changeBtnDes);
-    // $("#clear").on("click", changeBtnCle);
-    // $("#submitBtn").on("click", changeToOccupied)
     $(".clear").on("click", changeToNotOccupied)
     var countApp = 0;
     var selectedTable = "";
@@ -354,24 +278,7 @@ $(function () {
         }
 
     }
-    // function changeBtnCle() {
-    //     if (countApp == 3) {
-    //         $("#btn-app").attr("disabled", false);
-    //         $("#btn-ent").attr("disabled", false);
-    //         $("#btn-des").attr("disabled", false);
-    //         $("#btn-app").removeClass("btn-secondary");
-    //         $("#btn-app").addClass("btn-primary");
-    //         let chosenTable = ".order" + selectedTable;
-    //         console.log("before")
-    //         console.log("chosenTable: ", chosenTable)
-    //         console.log("after")
-    //         $(chosenTable).empty();
-    //         countApp = 0;
-    //     } else {
-    //         return
-    //     }
 
-    // }
     function changeToOccupied() {
         var targetTable = "#Occupied-Table" + selectedTable;
         $('#' + selectedTable).removeAttr("isOccupy");
