@@ -166,7 +166,7 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8 table table-color">
           <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal"
-            isOccupy="{{availability}}" data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
+            isOccupy="{{availability}}" data-target="#Not-Occupied-Table{{id}}" data-id={{id}}>Table {{id}}</button>
         </div>
         <div class="col-sm-2"></div>
       </div>
@@ -177,6 +177,103 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-2 check-table seat rounded-pill"></div>
         <div class="col-sm-3"></div>
+      </div>
+    </div>
+  </div>
+  {{!-- Modal Not Occupied --}}
+  <div class="modal fade" id="Not-Occupied-Table{{id}}" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Table{{id}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class=" offset-md-2 col-md-10">
+              <form>
+                <h4 class="text-danger"><strong>Appetizer</strong></h4>
+                {{#each ../tables.Appetizers}}
+                <li>{{ item }} (${{price}}): <input class="app-order" type="text" size="4" data-menu={{item}} data-price={{price}}></li>
+                {{/each}}
+
+                <br><br>
+
+                <h4 class="text-danger"><strong>Entre'</strong></h4>
+
+                {{#each ../tables.Entres}}
+                <li>{{ item }} (${{price}}): <input class="entree-order" type="text" size="4" data-menu={{item}} data-price={{price}}></li>
+                {{/each}}
+                <br><br>
+
+                <h4 class="text-danger"><strong>Desert</strong></h4>
+
+                {{#each ../tables.Deserts}}
+                <li>{{ item }}  (${{price}}): <input class="dessert-order" type="text" size="4" data-menu={{item}} data-price={{price}}></li>
+                {{/each}}
+                {{!-- {{> modal/modal_notOccupied}} --}}
+                <br><br>
+                <button type="button" class="btn btn-default submitOrderBtn" data-dismiss="modal" >Finish Order &
+                  Submit</button>
+              </form>
+
+              <br>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  {{!-- Modal Occupied --}}
+  <div class="modal fade" id="Occupied-Table{{id}}" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Table{{id}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8">
+              <h4 class="text-danger"><strong>Ordered List</strong></h4>
+              {{!-- placeholder for odered list and price --}}
+                  <ol class = "order{{id}}">
+                    
+                  </ol>
+              <br>
+              <h6 class = "totalPrice{{id}}">Total Price: </h6>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col" id="Appetizer">
+              <button type="button" class="btn btn-lg btn-primary" id="btn-app">Appetizer</button>
+            </div>
+            <div class="col" id="Entre">
+              <button type="button" class="btn btn-lg " id="btn-ent">Entre'</button>
+            </div>
+            <div class="col" id="Desert">
+              <button type="button" class="btn btn-lg" id="btn-des">Desert</button>
+            </div>
+            <div class="col" id="clear">
+              <button type="button" class="btn btn-lg btn-primary clear" id="clearBtn">Clear</button>
+            </div>
+          </div>
+          <br>
+
+
+        </div>
+        <br>
+
       </div>
     </div>
   </div>
@@ -198,7 +295,7 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-8 table table-color">
           <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal"
-            isOccupy="0" data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
+            isOccupy="{{availability}}" data-target="#Not-Occupied-Table{{id}}" data-id={{id}}>Table {{id}}</button>
         </div>
         <div class="col-sm-2"></div>
       </div>
@@ -214,6 +311,104 @@
       </div>
     </div>
   </div>
+  {{!-- Modal Not Occupied --}}
+  <div class="modal fade" id="Not-Occupied-Table{{id}}" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Table{{id}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class=" offset-md-2 col-md-10">
+              <form>
+                <h4 class="text-danger"><strong>Appetizer</strong></h4>
+                {{#each ../tables.Appetizers}}
+                <li>{{ item }} (${{price}}): <input class="app-order" type="text" size="4" data-menu={{item}} data-price={{price}}></li>
+                {{/each}}
+
+                <br><br>
+
+                <h4 class="text-danger"><strong>Entre'</strong></h4>
+
+                {{#each ../tables.Entres}}
+                <li>{{ item }} (${{price}}): <input class="entree-order" type="text" size="4" data-menu={{item}} data-price={{price}}></li>
+                {{/each}}
+                <br><br>
+
+                <h4 class="text-danger"><strong>Desert</strong></h4>
+
+                {{#each ../tables.Deserts}}
+                <li>{{ item }}  (${{price}}): <input class="dessert-order" type="text" size="4" data-menu={{item}} data-price={{price}}></li>
+                {{/each}}
+                {{!-- {{> modal/modal_notOccupied}} --}}
+                <br><br>
+                <button type="button" class="btn btn-default submitOrderBtn" data-dismiss="modal" >Finish Order &
+                  Submit</button>
+              </form>
+
+              <br>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  {{!-- Modal Occupied --}}
+  <div class="modal fade" id="Occupied-Table{{id}}" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Table{{id}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8">
+              <h4 class="text-danger"><strong>Ordered List</strong></h4>
+              {{!-- placeholder for odered list and price --}}
+                  <ol class = "order{{id}}">
+                    
+                  </ol>
+              <br>
+              <h6 class = "totalPrice{{id}}">Total Price: </h6>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col" id="Appetizer">
+              <button type="button" class="btn btn-lg btn-primary" id="btn-app">Appetizer</button>
+            </div>
+            <div class="col" id="Entre">
+              <button type="button" class="btn btn-lg " id="btn-ent">Entre'</button>
+            </div>
+            <div class="col" id="Desert">
+              <button type="button" class="btn btn-lg" id="btn-des">Desert</button>
+            </div>
+            <div class="col" id="clear">
+              <button type="button" class="btn btn-lg btn-primary clear" id="clearBtn">Clear</button>
+            </div>
+          </div>
+          <br>
+
+
+        </div>
+        <br>
+
+      </div>
+    </div>
+  </div>
+
   {{/if}}
   {{!-- {{/each}} --}}
   {{/each}}
