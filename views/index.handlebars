@@ -63,11 +63,11 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class=" offset-md-3 col-md-7">
+            <div class=" offset-md-2 col-md-10">
               <form>
                 <h4 class="text-danger"><strong>Appetizer</strong></h4>
                 {{#each ../tables.Appetizers}}
-                <li>{{ item }}: <input class="app-order" type="text" size="4" data-menu={{item}}></li>
+                <li>{{ item }} (${{price}}): <input class="app-order" type="text" size="4" data-menu={{item}} data-price={{price}}></li>
                 {{/each}}
 
                 <br><br>
@@ -75,14 +75,14 @@
                 <h4 class="text-danger"><strong>Entre'</strong></h4>
 
                 {{#each ../tables.Entres}}
-                <li>{{ item }}: <input class="entree-order" type="text" size="4" data-menu={{item}}></li>
+                <li>{{ item }} (${{price}}): <input class="entree-order" type="text" size="4" data-menu={{item}} data-price={{price}}></li>
                 {{/each}}
                 <br><br>
 
                 <h4 class="text-danger"><strong>Desert</strong></h4>
 
                 {{#each ../tables.Deserts}}
-                <li>{{ item }}: <input class="dessert-order" type="text" size="4" data-menu={{item}}></li>
+                <li>{{ item }}  (${{price}}): <input class="dessert-order" type="text" size="4" data-menu={{item}} data-price={{price}}></li>
                 {{/each}}
                 {{!-- {{> modal/modal_notOccupied}} --}}
                 <br><br>
@@ -103,7 +103,6 @@
   <div class="modal fade" id="Occupied-Table{{id}}" role="dialog">
     <div class="modal-dialog">
 
-
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -116,10 +115,12 @@
           <div class="row">
             <div class="col-md-8">
               <h4 class="text-danger"><strong>Ordered List</strong></h4>
+              {{!-- placeholder for odered list and price --}}
                   <ol class = "order{{id}}">
                     
                   </ol>
               <br>
+              <h6 class = "totalPrice{{id}}">Total Price: </h6>
             </div>
           </div>
 
