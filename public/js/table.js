@@ -133,46 +133,70 @@ $(function () {
         console.log("This is how many desserts we have" + dessertCount.length);
         let order = [];
         let count = [];
+        let price = [];
         appCount.forEach(function (appetizer) {
             if (appetizer.value != "" || appetizer.value != 0) {
                 let appQuantity = appetizer.value;
                 let appId = appetizer.dataset.menu;
+                let appPrice = appetizer.dataset.price;
+                let newAppPrice = parseFloat(appPrice) * parseFloat(appQuantity)
+                newAppPrice = newAppPrice.toFixed(2);
                 // count =+ appQuantity
                 // order =+ appId
                 order.push(appId);
                 count.push(appQuantity);
+                price.push(newAppPrice);
+                appetizer.value = "";
             };
         });
         entreeCount.forEach(function (entree) {
             if (entree.value != "" || entree.value != 0) {
                 let entreeQuantity = entree.value;
                 let entreeId = entree.dataset.menu;
+                let entreePrice = entree.dataset.price;
+                let newEntreePrice = parseFloat(entreePrice)*parseFloat(entreeQuantity);
+                newEntreePrice = newEntreePrice.toFixed(2);
                 // count =+ entreeQuantity
                 // order =+ entreeId
                 order.push(entreeId);
                 count.push(entreeQuantity);
+                price.push(newEntreePrice);
+                entree.value = "";
             }
         })
         dessertCount.forEach(function (dessert) {
             if (dessert.value != "" || dessert.value != 0) {
                 let dessertQuantity = dessert.value;
                 let dessertId = dessert.dataset.menu;
+                let dessertPrice = dessert.dataset.price;
+                let newDessertPrice = parseFloat(dessertPrice)*parseFloat(dessertQuantity);
+                newDessertPrice = newDessertPrice.toFixed(2)
                 // order =+ dessertId
                 // count =+ dessertQuantity
                 order.push(dessertId);
                 count.push(dessertQuantity);
+                price.push(newDessertPrice);
+                dessert.value = "";
             }
         })
         console.log(order);
         console.log(count);
+        console.log(price);
+        var totalPrice = 0;
+        var orderPrice = ".totalPrice" + selectedTable;
         for (i = 0; i < order.length; i++) {
             var orderedItem = order[i];
-            var orderedCount = count[i]
+            var orderedCount = count[i];
+            var orderedPrice = price[i];
             var orderid = ".order" + selectedTable;
+            
             $(orderid).append(`
-            <li> ${orderedItem} : ${orderedCount} 
+            <li> ${orderedItem} : ${orderedCount} -- ${orderedPrice} $
             `)
+            totalPrice+= parseFloat(orderedPrice);
         }
+        $(orderPrice).append(`${totalPrice.toFixed(2)} $`)
+        
         let orderString = order.toString();
         let countString = count.toString();
         let thisTable = selectedTable;
@@ -252,27 +276,27 @@ $(function () {
         })
     })
 
-    $(".clear").on("submit", function (event) {
-        event.preventDefault()
-        let customerId = $(this).data("customerId");
-        // let id = $(this).data("id");
-        // let availability = true;
+    // $(".clear").on("submit", function (event) {
+    //     event.preventDefault()
+    //     let customerId = $(this).data("customerId");
+    //     // let id = $(this).data("id");
+    //     // let availability = true;
 
-        let clearTable = {
-            table_color: white,
-            end_at: moment.format('LTS'),
-            customerId: customerId
-        };
-        $.ajax("/clear", {
-            type: "PUT",
-            data: clearTable
-        }).then(function (dbClear) {
-            // res.render("Index", dbClear) <-- think render goes in the route folder but either way I think it automatically renders when the page reloads
-            location.reload()
-        })
+    //     let clearTable = {
+    //         table_color: white,
+    //         end_at: moment.format('LTS'),
+    //         customerId: customerId
+    //     };
+    //     $.ajax("/clear", {
+    //         type: "PUT",
+    //         data: clearTable
+    //     }).then(function (dbClear) {
+    //         // res.render("Index", dbClear) <-- think render goes in the route folder but either way I think it automatically renders when the page reloads
+    //         location.reload()
+    //     })
 
-        $(".")
-    })
+    //     $(".")
+    // })
 
     //3/8/20 new function that on click will get the id from the button and retrieve the tablehistory
     $(".tableBtn").on("click", function () {
@@ -291,7 +315,7 @@ $(function () {
     $("#Desert").on("click", changeBtnDes);
     // $("#clear").on("click", changeBtnCle);
     // $("#submitBtn").on("click", changeToOccupied)
-    $("#clearBtn").on("click", changeToNotOccupied)
+    $(".clear").on("click", changeToNotOccupied)
     var countApp = 0;
     var selectedTable = "";
     function changeBtnApp() {
@@ -373,10 +397,12 @@ $(function () {
             $("#btn-app").removeClass("btn-secondary");
             $("#btn-app").addClass("btn-primary");
             let chosenTable = ".order" + selectedTable;
+            let chosenPrice = ".totalPrice" + selectedTable;
             console.log("before")
             console.log("chosenTable: ", chosenTable)
             console.log("after")
             $(chosenTable).empty();
+            $(chosenPrice).empty();
             countApp = 0;
         } else {
             return
