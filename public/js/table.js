@@ -236,27 +236,31 @@ $(function () {
 
     //Select table and change the status of table
     $(".tableBtn").on("click", chosenTable);
-    $("#Appetizer").on("click", changeBtnApp);
-    $("#Entre").on("click", changeBtnEnt);
-    $("#Desert").on("click", changeBtnDes);
+    $(".Appetizer").on("click", changeBtnApp);
+    $(".Entre").on("click", changeBtnEnt);
+    $(".Desert").on("click", changeBtnDes);
     $(".clear").on("click", changeToNotOccupied)
     var countApp = 0;
     var selectedTable = "";
     function changeBtnApp() {
-        $("#btn-app").attr("disabled", true);
-        $("#btn-app").removeClass("btn-primary");
-        $("#btn-app").addClass("btn-secondary");
-        $("#btn-ent").addClass("btn-primary");
+        var appBtn = "#btn-app"+selectedTable;
+        var entBtn = "#btn-ent"+selectedTable;
+        $(appBtn).attr("disabled", true);
+        $(appBtn).removeClass("btn-primary");
+        $(appBtn).addClass("btn-secondary");
+        $(entBtn).addClass("btn-primary");
         $('#' + selectedTable).removeClass("btn-danger");
         $('#' + selectedTable).addClass("btn-warning")
         countApp++;
     }
     function changeBtnEnt() {
         if (countApp == 1) {
-            $("#btn-ent").attr("disabled", true);
-            $("#btn-ent").removeClass("btn-primary");
-            $("#btn-ent").addClass("btn-secondary");
-            $("#btn-des").addClass("btn-primary");
+            var entBtn = "#btn-ent"+selectedTable;
+            var desBtn = "#btn-des"+selectedTable;
+            $(entBtn).attr("disabled", true);
+            $(entBtn).removeClass("btn-primary");
+            $(entBtn).addClass("btn-secondary");
+            $(desBtn).addClass("btn-primary");
             $('#' + selectedTable).removeClass("btn-warning");
             $('#' + selectedTable).addClass("btn-success")
             countApp++;
@@ -267,9 +271,10 @@ $(function () {
     }
     function changeBtnDes() {
         if (countApp == 2) {
-            $("#btn-des").attr("disabled", true);
-            $("#btn-des").removeClass("btn-primary");
-            $("#btn-des").addClass("btn-secondary");
+            var desBtn = "#btn-des"+selectedTable;
+            $(desBtn).attr("disabled", true);
+            $(desBtn).removeClass("btn-primary");
+            $(desBtn).addClass("btn-secondary");
             $('#' + selectedTable).removeClass("btn-success");
             $('#' + selectedTable).addClass("btn-AB2567")
             countApp++;
@@ -278,7 +283,6 @@ $(function () {
         }
 
     }
-
     function changeToOccupied() {
         var targetTable = "#Occupied-Table" + selectedTable;
         $('#' + selectedTable).removeAttr("isOccupy");
@@ -291,6 +295,9 @@ $(function () {
     }
     function changeToNotOccupied() {
         if (countApp == 3) {
+            var appBtn = "#btn-app"+selectedTable;
+            var entBtn = "#btn-ent"+selectedTable;
+            var desBtn = "#btn-des"+selectedTable;
             var targetTable = "#Not-Occupied-Table" + selectedTable;
             $('#' + selectedTable).removeAttr("isOccupy");
             $('#' + selectedTable).removeAttr("data-target");
@@ -298,16 +305,13 @@ $(function () {
             $('#' + selectedTable).attr("data-target", targetTable)
             $('#' + selectedTable).removeClass("btn-AB2567");
             $('#' + selectedTable).addClass("btn-info")
-            $("#btn-app").attr("disabled", false);
-            $("#btn-ent").attr("disabled", false);
-            $("#btn-des").attr("disabled", false);
-            $("#btn-app").removeClass("btn-secondary");
-            $("#btn-app").addClass("btn-primary");
+            $(appBtn).attr("disabled", false);
+            $(entBtn).attr("disabled", false);
+            $(desBtn).attr("disabled", false);
+            $(appBtn).removeClass("btn-secondary");
+            $(appBtn).addClass("btn-primary");
             let chosenTable = ".order" + selectedTable;
             let chosenPrice = ".totalPrice" + selectedTable;
-            console.log("before")
-            console.log("chosenTable: ", chosenTable)
-            console.log("after")
             $(chosenTable).empty();
             $(chosenPrice).empty();
             countApp = 0;
