@@ -246,9 +246,9 @@ $(function () {
         var appBtn = "#btn-app"+selectedTable;
         var entBtn = "#btn-ent"+selectedTable;
         $(appBtn).attr("disabled", true);
-        $(appBtn).removeClass("btn-primary");
+        $(appBtn).removeClass("btn-danger");
         $(appBtn).addClass("btn-secondary");
-        $(entBtn).addClass("btn-primary");
+        $(entBtn).addClass("btn-danger");
         $('#' + selectedTable).removeClass("btn-danger");
         $('#' + selectedTable).addClass("btn-warning")
         countApp++;
@@ -258,9 +258,9 @@ $(function () {
             var entBtn = "#btn-ent"+selectedTable;
             var desBtn = "#btn-des"+selectedTable;
             $(entBtn).attr("disabled", true);
-            $(entBtn).removeClass("btn-primary");
+            $(entBtn).removeClass("btn-danger");
             $(entBtn).addClass("btn-secondary");
-            $(desBtn).addClass("btn-primary");
+            $(desBtn).addClass("btn-danger");
             $('#' + selectedTable).removeClass("btn-warning");
             $('#' + selectedTable).addClass("btn-success")
             countApp++;
@@ -273,7 +273,7 @@ $(function () {
         if (countApp == 2) {
             var desBtn = "#btn-des"+selectedTable;
             $(desBtn).attr("disabled", true);
-            $(desBtn).removeClass("btn-primary");
+            $(desBtn).removeClass("btn-danger");
             $(desBtn).addClass("btn-secondary");
             $('#' + selectedTable).removeClass("btn-success");
             $('#' + selectedTable).addClass("btn-AB2567")
@@ -293,7 +293,6 @@ $(function () {
         $('#' + selectedTable).addClass("btn-danger")
         selectedTable = "";
     }
-    //1234
     function changeToNotOccupied() {
         if (countApp == 3) {
             var appBtn = "#btn-app"+selectedTable;
@@ -310,7 +309,7 @@ $(function () {
             $(entBtn).attr("disabled", false);
             $(desBtn).attr("disabled", false);
             $(appBtn).removeClass("btn-secondary");
-            $(appBtn).addClass("btn-primary");
+            $(appBtn).addClass("btn-danger");
             let chosenTable = ".order" + selectedTable;
             let chosenPrice = ".totalPrice" + selectedTable;
             $(chosenTable).empty();
