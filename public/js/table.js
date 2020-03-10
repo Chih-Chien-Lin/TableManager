@@ -3,7 +3,7 @@ $(function () {
     let entreeCount = document.querySelectorAll(".entree-order");
     let dessertCount = document.querySelectorAll(".dessert-order");
 
-    function getTime() {         
+    function getTime() {
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -46,17 +46,17 @@ $(function () {
         let seats;
 
         if (totalSeats == 2) {
-                seats = {
+            seats = {
                 seats: totalSeats,
                 twoSeat: true
             }
         } else if (totalSeats == 4) {
-                seats = {
+            seats = {
                 seats: totalSeats,
                 fourSeat: true
             }
         } else if (totalSeats == 6) {
-                seats = {
+            seats = {
                 seats: totalSeats,
                 sixSeat: true
             }
@@ -74,9 +74,9 @@ $(function () {
 
     });
 
-    $("#ViewMenu").on("click",function(){
+    $("#ViewMenu").on("click", function () {
         var status = $(this).attr("isoccupy")
-        console.log("check occupy: ",status)
+        console.log("check occupy: ", status)
         event.preventDefault();
         $.ajax({
             type: "GET",
@@ -126,45 +126,77 @@ $(function () {
     })
 
     //*NEW* OFF THE AIRPLANE! this is a easier function since we can link via foreign key. 
-    $("#submitOrderBtn").on("click", function (event) {
+    $(".submitOrderBtn").on("click", function (event) {
         event.preventDefault();
         console.log("This is how many app we have" + appCount.length);
         console.log("This is how many entrees we have" + entreeCount.length);
         console.log("This is how many desserts we have" + dessertCount.length);
         let order = [];
         let count = [];
-        appCount.forEach(function(appetizer){
-            if(appetizer.value != "" || appetizer.value != 0){
+        let price = [];
+        appCount.forEach(function (appetizer) {
+            if (appetizer.value != "" || appetizer.value != 0) {
                 let appQuantity = appetizer.value;
                 let appId = appetizer.dataset.menu;
+                let appPrice = appetizer.dataset.price;
+                let newAppPrice = parseFloat(appPrice) * parseFloat(appQuantity)
+                newAppPrice = newAppPrice.toFixed(2);
                 // count =+ appQuantity
                 // order =+ appId
                 order.push(appId);
                 count.push(appQuantity);
-            };            
+                price.push(newAppPrice);
+                appetizer.value = "";
+            };
         });
-        entreeCount.forEach(function(entree){
-            if(entree.value != "" || entree.value != 0){
+        entreeCount.forEach(function (entree) {
+            if (entree.value != "" || entree.value != 0) {
                 let entreeQuantity = entree.value;
                 let entreeId = entree.dataset.menu;
+                let entreePrice = entree.dataset.price;
+                let newEntreePrice = parseFloat(entreePrice)*parseFloat(entreeQuantity);
+                newEntreePrice = newEntreePrice.toFixed(2);
                 // count =+ entreeQuantity
                 // order =+ entreeId
                 order.push(entreeId);
                 count.push(entreeQuantity);
-            }       
+                price.push(newEntreePrice);
+                entree.value = "";
+            }
         })
-        dessertCount.forEach(function(dessert){
-            if(dessert.value != "" || dessert.value != 0){
+        dessertCount.forEach(function (dessert) {
+            if (dessert.value != "" || dessert.value != 0) {
                 let dessertQuantity = dessert.value;
                 let dessertId = dessert.dataset.menu;
+                let dessertPrice = dessert.dataset.price;
+                let newDessertPrice = parseFloat(dessertPrice)*parseFloat(dessertQuantity);
+                newDessertPrice = newDessertPrice.toFixed(2)
                 // order =+ dessertId
                 // count =+ dessertQuantity
                 order.push(dessertId);
                 count.push(dessertQuantity);
-            }       
+                price.push(newDessertPrice);
+                dessert.value = "";
+            }
         })
         console.log(order);
         console.log(count);
+        console.log(price);
+        var totalPrice = 0;
+        var orderPrice = ".totalPrice" + selectedTable;
+        for (i = 0; i < order.length; i++) {
+            var orderedItem = order[i];
+            var orderedCount = count[i];
+            var orderedPrice = price[i];
+            var orderid = ".order" + selectedTable;
+            
+            $(orderid).append(`
+            <li> ${orderedItem} : ${orderedCount} -- ${orderedPrice} $
+            `)
+            totalPrice+= parseFloat(orderedPrice);
+        }
+        $(orderPrice).append(`${totalPrice.toFixed(2)} $`)
+        
         let orderString = order.toString();
         let countString = count.toString();
         let thisTable = selectedTable;
@@ -188,10 +220,10 @@ $(function () {
             $.ajax("/availability", {
                 type: "PUT",
                 data: tableAvail
-            }).then(function (response){
-            console.log(response)
-             console.log("New customer recieved!")
-              location.reload()
+            }).then(function (response) {
+                console.log(response)
+                console.log("New customer recieved!")
+                location.reload()
             })
         })
     })
@@ -244,31 +276,34 @@ $(function () {
         })
     })
 
-    $(".clear").on("submit", function (event) {
-        event.preventDefault()
-        let customerId = $(this).data("customerId");
-        // let id = $(this).data("id");
-        // let availability = true;
-        let clearTable = {
-            table_color: white,
-            end_at: moment.format('LTS'),
-            customerId: customerId
-        };
-        $.ajax("/clear", {
-            type: "PUT",
-            data: clearTable
-        }).then(function (dbClear) {
-            // res.render("Index", dbClear) <-- think render goes in the route folder but either way I think it automatically renders when the page reloads
-            location.reload()
-        })
-    })
+    // $(".clear").on("submit", function (event) {
+    //     event.preventDefault()
+    //     let customerId = $(this).data("customerId");
+    //     // let id = $(this).data("id");
+    //     // let availability = true;
+
+    //     let clearTable = {
+    //         table_color: white,
+    //         end_at: moment.format('LTS'),
+    //         customerId: customerId
+    //     };
+    //     $.ajax("/clear", {
+    //         type: "PUT",
+    //         data: clearTable
+    //     }).then(function (dbClear) {
+    //         // res.render("Index", dbClear) <-- think render goes in the route folder but either way I think it automatically renders when the page reloads
+    //         location.reload()
+    //     })
+
+    //     $(".")
+    // })
 
     //3/8/20 new function that on click will get the id from the button and retrieve the tablehistory
-    $(".tableBtn").on("click", function(){
+    $(".tableBtn").on("click", function () {
         let id = $(this).data("id")
         $.ajax("/api/order/" + id, {
             type: "GET"
-        }).then(function(data){
+        }).then(function (data) {
             console.log(data)
         })
     })
@@ -278,9 +313,9 @@ $(function () {
     $("#Appetizer").on("click", changeBtnApp);
     $("#Entre").on("click", changeBtnEnt);
     $("#Desert").on("click", changeBtnDes);
-    $("#clear").on("click", changeBtnCle);
+    // $("#clear").on("click", changeBtnCle);
     // $("#submitBtn").on("click", changeToOccupied)
-    $("#clearBtn").on("click", changeToNotOccupied)
+    $(".clear").on("click", changeToNotOccupied)
     var countApp = 0;
     var selectedTable = "";
     function changeBtnApp() {
@@ -319,41 +354,65 @@ $(function () {
         }
 
     }
-    function changeBtnCle() {
-        if (countApp == 3) {
-            $("#btn-app").attr("disabled", false);
-            $("#btn-ent").attr("disabled", false);
-            $("#btn-des").attr("disabled", false);
-            $("#btn-app").removeClass("btn-secondary");
-            $("#btn-app").addClass("btn-primary");
-            countApp = 0;
-        } else {
-            return
-        }
+    // function changeBtnCle() {
+    //     if (countApp == 3) {
+    //         $("#btn-app").attr("disabled", false);
+    //         $("#btn-ent").attr("disabled", false);
+    //         $("#btn-des").attr("disabled", false);
+    //         $("#btn-app").removeClass("btn-secondary");
+    //         $("#btn-app").addClass("btn-primary");
+    //         let chosenTable = ".order" + selectedTable;
+    //         console.log("before")
+    //         console.log("chosenTable: ", chosenTable)
+    //         console.log("after")
+    //         $(chosenTable).empty();
+    //         countApp = 0;
+    //     } else {
+    //         return
+    //     }
 
-    }
+    // }
     function changeToOccupied() {
+        var targetTable = "#Occupied-Table" + selectedTable;
         $('#' + selectedTable).removeAttr("isOccupy");
         $('#' + selectedTable).removeAttr("data-target");
         $('#' + selectedTable).attr("isOccupy", "1");
-        $('#' + selectedTable).attr("data-target", "#Occupied")
+        $('#' + selectedTable).attr("data-target", targetTable)
         $('#' + selectedTable).removeClass("btn-info");
         $('#' + selectedTable).addClass("btn-danger")
         selectedTable = "";
     }
     function changeToNotOccupied() {
-        $('#' + selectedTable).removeAttr("isOccupy");
-        $('#' + selectedTable).removeAttr("data-target");
-        $('#' + selectedTable).attr("isOccupy", "0");
-        $('#' + selectedTable).attr("data-target", "#Not-Occupied")
-        $('#' + selectedTable).removeClass("btn-AB2567");
-        $('#' + selectedTable).addClass("btn-info")
+        if (countApp == 3) {
+            var targetTable = "#Not-Occupied-Table" + selectedTable;
+            $('#' + selectedTable).removeAttr("isOccupy");
+            $('#' + selectedTable).removeAttr("data-target");
+            $('#' + selectedTable).attr("isOccupy", "0");
+            $('#' + selectedTable).attr("data-target", targetTable)
+            $('#' + selectedTable).removeClass("btn-AB2567");
+            $('#' + selectedTable).addClass("btn-info")
+            $("#btn-app").attr("disabled", false);
+            $("#btn-ent").attr("disabled", false);
+            $("#btn-des").attr("disabled", false);
+            $("#btn-app").removeClass("btn-secondary");
+            $("#btn-app").addClass("btn-primary");
+            let chosenTable = ".order" + selectedTable;
+            let chosenPrice = ".totalPrice" + selectedTable;
+            console.log("before")
+            console.log("chosenTable: ", chosenTable)
+            console.log("after")
+            $(chosenTable).empty();
+            $(chosenPrice).empty();
+            countApp = 0;
+        } else {
+            return
+        }
         selectedTable = "";
     }
     function chosenTable() {
         selectedTable = this.id
         console.log("selectedTable: ", selectedTable)
-        
+
     }
 });
 
