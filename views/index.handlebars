@@ -1,17 +1,17 @@
 <ul class="nav check bg-primary">
   <li class="nav-item text-center nav-header-main m-5"><u>Table Manager</u></li>
   <li class="nav-item text-center m-5">
-  <div class="text-center nav-header-sub m-1">Create Table</div>
-      <select id="table-count">
-        <option value=2>2 Seats</option>
-        <option value=4>4 Seats</option>
-        <option value=6>6 Seats</option>
-      </select>
+    <div class="text-center nav-header-sub m-1">Create Table</div>
+    <select id="table-count">
+      <option value=2>2 Seats</option>
+      <option value=4>4 Seats</option>
+      <option value=6>6 Seats</option>
+    </select>
     <button class="btn btn-info rounded-pill m-1 text-center p-1" id="create-table">Build</button>
   </li>
   <li class="nav-item check m-5">
-      <button type="button" class="btn btn-info btn-lg nav-button-custom" id="ViewMenu" data-toggle="modal" isOccupy="{{availability}}"
-      data-target="#View-Menu"> View Menu</button>
+    <button type="button" class="btn btn-info btn-lg nav-button-custom" id="ViewMenu" data-toggle="modal"
+      isOccupy="{{availability}}" data-target="#View-Menu"> View Menu</button>
   </li>
   <li class="nav-item text-center m-5">
     <div class="color-slot bg-info m-1">Unoccupied</div>
@@ -24,97 +24,197 @@
 </ul>
 
 <div class="all-tables">
-  {{#each tables}}
-    {{#if twoSeat}}
-      <div class="table-container">
-          <div class="container m-5">
-              <div class="row">
-                  <div class="col-sm-5"></div>
-                  <div class="col-sm-2 check-table seat rounded"></div>
-                  <div class="col-sm-5"></div>
-              </div>
+  {{#each tables.table}}
+  {{!-- {{#each this.table}} --}}
+  {{#if twoSeat}}
+  <div class="table-container">
+    <div class="container m-5">
+      <div class="row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2 check-table seat rounded"></div>
+        <div class="col-sm-5"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 table rounded">
+          <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal"
+            isOccupy="{{availability}}" data-target="#Not-Occupied-Table{{id}}" data-id={{id}}>Table {{id}}</button>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2 check-table seat rounded"></div>
+        <div class="col-sm-5"></div>
+      </div>
+    </div>
+  </div>
+  {{!-- Modal Not Occupied --}}
+  <div class="modal fade" id="Not-Occupied-Table{{id}}" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Table{{id}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class=" offset-md-3 col-md-7">
+              <form>
+                <h4 class="text-danger"><strong>Appetizer</strong></h4>
+                {{#each ../tables.Appetizers}}
+                <li>{{ item }}: <input class="app-order" type="text" size="4" data-menu={{item}}></li>
+                {{/each}}
+
+                <br><br>
+
+                <h4 class="text-danger"><strong>Entre'</strong></h4>
+
+                {{#each ../tables.Entres}}
+                <li>{{ item }}: <input class="entree-order" type="text" size="4" data-menu={{item}}></li>
+                {{/each}}
+                <br><br>
+
+                <h4 class="text-danger"><strong>Desert</strong></h4>
+
+                {{#each ../tables.Deserts}}
+                <li>{{ item }}: <input class="dessert-order" type="text" size="4" data-menu={{item}}></li>
+                {{/each}}
+                {{!-- {{> modal/modal_notOccupied}} --}}
+                <br><br>
+                <button type="button" class="btn btn-default submitOrderBtn" data-dismiss="modal" >Finish Order &
+                  Submit</button>
+              </form>
+
               <br>
-              <div class="row">
-                  <div class="col-sm-2"></div>
-                  <div class="col-sm-8 table rounded"> 
-                      <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal" isOccupy="{{availability}}"
-                      data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
-                  </div>
-                  <div class="col-sm-2"></div>
-              </div>
-              <br>
-              <div class="row">
-                  <div class="col-sm-5"></div>
-                  <div class="col-sm-2 check-table seat rounded"></div>
-                  <div class="col-sm-5"></div>
-              </div>
+            </div>
           </div>
-      </div>
-    {{/if}}
-    {{#if fourSeat}}
-      <div class="table-container check">
-        <div class="container m-5">
-            <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-3"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8 table table-color">
-                  <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal" isOccupy="{{availability}}"
-                  data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-3"></div>
-            </div>
         </div>
+
       </div>
-    {{/if}}
-    {{#if sixSeat}}
-      <div class="table-container check">
-        <div class="container m-5">
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8 table table-color">
-                  <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal" isOccupy="0"
-                  data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-1"></div>
-                <div class="col-sm-2 check-table seat rounded-pill"></div>
-                <div class="col-sm-2"></div>
-            </div>
+
+    </div>
+  </div>
+  {{!-- Modal Occupied --}}
+  <div class="modal fade" id="Occupied-Table{{id}}" role="dialog">
+    <div class="modal-dialog">
+
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Table{{id}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-8">
+              <h4 class="text-danger"><strong>Ordered List</strong></h4>
+                  <ol class = "order{{id}}">
+                    
+                  </ol>
+              <br>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col" id="Appetizer">
+              <button type="button" class="btn btn-lg btn-primary" id="btn-app">Appetizer</button>
+            </div>
+            <div class="col" id="Entre">
+              <button type="button" class="btn btn-lg " id="btn-ent">Entre'</button>
+            </div>
+            <div class="col" id="Desert">
+              <button type="button" class="btn btn-lg" id="btn-des">Desert</button>
+            </div>
+            <div class="col" id="clear">
+              <button type="button" class="btn btn-lg btn-primary clear" id="clearBtn">Clear</button>
+            </div>
+          </div>
+          <br>
+
+
+        </div>
+        <br>
+
       </div>
-    {{/if}}
+    </div>
+  </div>
+
+  {{/if}}
+
+  {{#if fourSeat}}
+  <div class="table-container check">
+    <div class="container m-5">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-3"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 table table-color">
+          <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal"
+            isOccupy="{{availability}}" data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-3"></div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  {{#if sixSeat}}
+  <div class="table-container check">
+    <div class="container m-5">
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-2"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 table table-color">
+          <button type="button" class="btn btn-info btn-{{color}} tableBtn table-button" id="{{id}}" data-toggle="modal"
+            isOccupy="0" data-target="#Not-Occupied" data-id={{id}}>Table {{id}}</button>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2 check-table seat rounded-pill"></div>
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  {{!-- {{/each}} --}}
   {{/each}}
 </div>
 
@@ -212,7 +312,7 @@
               <li>{{ item }}: <input class="dessert-order" type="text" size="4" data-menu={{item}}></li>
               {{/each}}
               <br><br>
-              <button type="button" class="btn btn-default" data-dismiss="modal" id="submitOrderBtn">Finish Order &
+              <button type="button" class="btn btn-default" data-dismiss="modal" >Finish Order &
                 Submit</button>
             </form>
 
