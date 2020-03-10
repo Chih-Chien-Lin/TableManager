@@ -26,15 +26,19 @@ module.exports = function(app) {
           }
         });
         var newobject = {
-          tables: allTables,
-          Appetizers: appe,
-          Entres: entr,
-          Deserts: dese
+          tables: { table: allTables,
+                    Appetizers: appe,
+                    Entres: entr,
+                    Deserts: dese
+                  }
+          // Appetizers: appe,
+          // Entres: entr,
+          // Deserts: dese
         }
         // // console.log("stored appe: ",appRend)
         // console.log("stored entr: ",entreeRend)
         // console.log("stored dese: ",dessertRend)
-        console.log(newobject)
+        // console.log(newobject)
         return res.render("index", newobject)
       })
     })
@@ -100,7 +104,7 @@ module.exports = function(app) {
 
   //this is used to change the availbility of the table when you click on appetizer or clear
   app.put("/availability", function(req, res) { 
-    console.log("This is the req: " + req.body)
+    // console.log("This is the req: " + req.body)
     db.Diningroom.update(req.body, {
         where: {
           id: req.body.id
