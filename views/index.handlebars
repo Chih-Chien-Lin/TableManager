@@ -538,24 +538,24 @@
           <div class="col-md-12">
             <h4 class="text-danger"><strong>Appetizer</strong></h4>
             <ul>
-              {{#each Appetizers}}
-              <li>{{ item }}, Price: {{ price }},Cook Time: {{ cook_time }}</li>
+              {{#each tables.Appetizers}}
+              <li>{{ item }}, Price: {{ price }} $, Cook Time: {{ cook_time }} min</li>
               {{/each}}
             </ul>
 
             <br>
             <h4 class="text-danger"><strong>Entre'</strong></h4>
             <ul>
-              {{#each Entres}}
-              <li>{{ item }}, Price: {{ price }},Cook Time: {{ cook_time }}</li>
+              {{#each tables.Entres}}
+              <li>{{ item }}, Price: {{ price }} $, Cook Time: {{ cook_time }} min</li>
               {{/each}}
             </ul>
 
             <br>
             <h4 class="text-danger"><strong>Desert</strong></h4>
             <ul>
-              {{#each Deserts}}
-              <li>{{ item }}, Price: {{ price }},Cook Time: {{ cook_time }}</li>
+              {{#each tables.Deserts}}
+              <li>{{ item }}, Price: {{ price }} $, Cook Time: {{ cook_time }} min</li>
               {{/each}}
             </ul>
             <br>
@@ -629,15 +629,15 @@
           What Dish you want to delete? <br><br>
           <select id="delete-dish">
             <option value="null">---Appetizer---</option>
-            {{#each Appetizers}}
+            {{#each tables.Appetizers}}
             <option id={{id}}>{{ item }}</option>
             {{/each}}
             <option value="null">---Entre'---</option>
-            {{#each Entres}}
+            {{#each tables.Entres}}
             <option id={{id}}>{{ item }}</option>
             {{/each}}
             <option value="null">---Desert---</option>
-            {{#each Deserts}}
+            {{#each tables.Deserts}}
             <option id={{id}}>{{ item }}</option>
             {{/each}}
           </select><br><br>
