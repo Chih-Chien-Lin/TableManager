@@ -190,7 +190,7 @@ $(function () {
             `)
             totalPrice+= parseFloat(orderedPrice);
         }
-        $(orderPrice).append(`${totalPrice.toFixed(2)} $`)
+        $(orderPrice).append(`Total Price: ${totalPrice.toFixed(2)} $`)
         
         let orderString = order.toString();
         let countString = count.toString();
